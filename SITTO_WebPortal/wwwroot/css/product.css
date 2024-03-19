@@ -1,0 +1,369 @@
+﻿.category_clamp_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.product_item_category_css {
+    background: var(--theme-color);
+    color: #fff;
+    font-size: 12px;
+    padding: 3px;
+    border-radius: 4px;
+}
+.div_btn_slide_product {
+    height: 55px;
+    justify-content: space-between;
+    position: relative;
+    top: -53%;
+    display: flex;
+}
+.img_div {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.slick-dots {
+    bottom: -44px !important;
+}
+.prev-btn_product {
+    border-top-right-radius: 13px;
+    border: none;
+    border-bottom-right-radius: 13px;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+}
+
+.prev-btn_product:hover{
+    opacity: 0.9;
+}
+
+.next-btn_product {
+    border: none;
+    opacity: 0.9;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+
+.next-btn_product:hover{
+    opacity: 0.9;
+}
+.clamp_name_title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.div_product_css{
+    height: 100px;
+}
+.product_res_css {
+    padding: 10px;
+    height: 250px;
+    transition: transform 0.3s;
+}
+.product_res_css:hover{
+    transform: translateY(-10px);
+}
+    /*.slide_btn_tab {
+    overflow: unset !important;
+    width: 100%;
+}*/
+    .btn_tab {
+        background-color: var(--theme-color);
+        color: #fff;
+    }
+.img_item_css{
+    background: #fff;
+}
+.slide_btn_tab button {
+    /*width: 280px;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.tititle_name {
+    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+.title_font {
+    font-size: calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320))) !important;
+}
+.css_nav_item{
+    width: 260px !important;
+}
+.product_all_item_css {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+#imgZoom {
+    aspect-ratio: 1/1.3;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    --zoom-x: 50%;
+    --zoom-y: 50%;
+    transform: scale(1.5);
+    pointer-events: none;
+    clip-path: circle( 100px at var(--zoom-x) var(--zoom-y) );
+    opacity: 0;
+}
+
+.zoom {
+    position: relative;
+}
+.fill {
+    color: transparent; /* Đặt màu trong suốt cho toàn bộ biểu tượng */
+    display: inline-block;
+    position: relative;
+}
+
+.fill::before {
+    content: "\2605"; /* Ký tự sao (star) đầy đủ */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Chỉ định 50% chiều rộng để làm màu vàng nửa dưới */
+    color: yellow; /* Màu vàng cho nửa phía trên */
+    overflow: hidden;
+}
+/*.product_detail_css_call {
+    padding: 12px;
+    text-align: left;
+    margin-top: 15px;
+    position: relative;
+}*/
+.bg_class {
+    background: #dbdb2614;
+}
+.product_div_box_css {
+    border: 1px solid #ececec;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
+    padding: 0 !important
+}
+.product_set_height_css {
+    height: 215px;
+    transition: transform 0.3s;
+}
+product_set_height_css:hover {
+    transform: translateY(-10px);
+}
+.product_image_1 {
+    padding: 0;
+    position: relative;
+}
+.img_box_shadow_css {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.product_detail_css{
+    margin: unset !important;
+}
+.product_detail_item_css{
+    height: 75px;
+}
+.product_img_item {
+    margin: unset !important;
+}
+.card_product_wrapper {
+    background: white;
+}
+.tab-style-color-2 {
+    padding-bottom: 11px;
+}
+.name_clamp_product {
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.btn_slide_product {
+    justify-content: space-between;
+    position: relative;
+    top: -50%;
+    display: flex;
+}
+
+.prev-btn {
+    opacity: 0.5;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    position: relative;
+    top: -50%;
+}
+.next-btn {
+    position: relative;
+    top: -50%;
+    opacity: 0.5;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}
+.title_detail_product {
+    font-weight: 600;
+    margin-bottom: calc(10px + (12 - 10) * ((100vw - 320px) / (1920 - 320)));
+    letter-spacing: 0.4px;
+}
+.next-prow-detail {
+    right: 0;
+    position: absolute;
+    top: 30%;
+    opacity: 0.5;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}
+
+/* Định nghĩa keyframes cho rung từ trái qua phải */
+@keyframes shake {
+    0% {
+        transform: translateX(-5px);
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(-5px);
+    }
+}
+
+/* CSS cho nút bạn muốn rung */
+.ring_ring {
+    background-color: #3498db; /* Màu nền của nút */
+    color: #ffffff; /* Màu chữ trên nút */
+    text-align: center;
+    line-height: 50px;
+    cursor: pointer;
+    animation: shake 0.5s ease infinite; /* Sử dụng animation shake với vô số lần lặp lại */
+}
+
+/* Để ngăn nút rung ban đầu, bạn có thể sử dụng pseudo-class :hover */
+.ring_ring:hover {
+    animation: none; /* Tắt animation khi hover */
+}
+.div_detail_wrapper {
+    background: #f8f9fa !important;
+    padding: 2.25rem;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.div_detail_wrapper img {
+    max-width: 100%;
+}
+
+.div_item_know_css{
+    height: 100px;
+}
+.name_item:hover {
+    color: #19bf48;
+}
+.product_all_name_item{
+    font-weight: 500;
+}
+/*.product_all_name_item:hover{
+    color: #10e950 !important;
+}*/
+.product-section .right-box-contain .product-packege .select-packege li a.active {
+    background: #2957a4;
+}
+.title_font_item_css {
+    font-size: 12px !important;
+    padding: 4px 3px;
+    font-weight: 800;
+    color: white;
+}
+.product_detail_custom_modifiel {
+    height: 550px;
+    padding: 15px;
+}
+.product_detail_ishot {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+/*.product_detail_ishot:last-child{
+    border-bottom: unset;
+}*/
+.product_detail_custom_modifiel img {
+    object-fit: cover;
+}
+.slider_bar_product_css {
+    height: 120px;
+    margin: 3px 3px !important;
+   /* width: 125px;*/
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.slider_bar_product_css img{
+    object-fit: contain;
+}
+.product_related {
+    height: 220px;
+}
+.product_related img{
+    object-fit: cover;
+}
+.product_detail_h1 {
+    font-size: calc(22px + (28 - 22) * ((100vw - 320px) / (1920 - 320))) !important;
+}
+.product_detail_name_h4 {
+    font-size: 18px !important;
+}
+#table_property_filter tbody tr th {
+    width: 180px;
+}
+#table_property_filter tbody tr th h6{
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 160%;
+}
+#table_property_filter tbody tr td span {
+    font-family: Tahoma;
+    font-size: 16px !important;
+    font-weight: 400;
+    margin-bottom: 3px;
+    }
+.product_isQuestion {
+    border: 1px solid #cc77772e !important;
+    background: #fff !important;
+}
+.product_content {
+    padding: 14px 20px;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #e5e5e5;
+}
+
+.custom_image_all_product {
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+}

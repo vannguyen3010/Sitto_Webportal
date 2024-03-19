@@ -1,0 +1,658 @@
+﻿@using SITTO_WebPortal.Lib;
+@model M_Product;
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var categoryLv2 = ViewBag.categoryLv2 as List<M_Category>;
+    var schemaList = ViewBag.SchemaProduct as List<M_SchemaJson>;
+    var productList = ViewBag.ListCat as List<M_Category>;
+    var data = ViewBag.ListProductRelated as List<M_Product>;
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+    var productDetail = ViewBag.ProductDetail as M_Product;
+    var proppertyFilter0 = productDetail.propertyFilterObjs.Where(x => x.propertyFilterObj.typeId == 0).Select(x => x.propertyFilterObj?.name).ToList();
+    var proppertyFilter1 = productDetail.propertyFilterObjs.Where(x => x.propertyFilterObj.typeId == 1).Select(x => x.propertyFilterObj?.name).ToList();
+    var proppertyFilter2 = productDetail.propertyFilterObjs.Where(x => x.propertyFilterObj.typeId == 2).Select(x => x.propertyFilterObj?.name).ToList();
+    var proppertyFilter3 = productDetail.propertyFilterObjs.Where(x => x.propertyFilterObj.typeId == 3).Select(x => x.propertyFilterObj?.name).ToList();
+    var proppertyFilter4 = productDetail.propertyFilterObjs.Where(x => x.propertyFilterObj.typeId == 6).Select(x => x.propertyFilterObj?.name).ToList();
+    var proppertyFilter5 = productDetail.propertyFilterObjs.Where(x => x.propertyFilterObj.typeId == 5).Select(x => x.propertyFilterObj?.name).ToList();
+    var productIshot = ViewBag.ProductIshot as List<M_Product>;
+    var productIshots = ViewBag.ProductIshots as List<M_Product>;
+}
+@section Scripts{
+    <script>
+        const LIST_SCHEMA = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@schemaList))';
+        let zoom = document.querySelector('.zoom');
+        let imgZoom = document.getElementById('imgZoom');
+
+        zoom.addEventListener('mousemove', (event) => {
+            imgZoom.style.opacity = 1;
+            let positionPx = event.x - zoom.getBoundingClientRect().left;
+            let positionX = (positionPx / zoom.offsetWidth) * 100;
+
+            let positionPy = event.y - zoom.getBoundingClientRect().top;
+            let positionY = (positionPy / zoom.offsetHeight) * 100;
+
+            imgZoom.style.setProperty('--zoom-x', positionX + '%');
+            imgZoom.style.setProperty('--zoom-y', positionY + '%');
+
+            let transformX = -(positionX - 50) / 3.5;
+            let transformY = - (positionY - 50) / 3.5;
+            imgZoom.style.transform = `scale(1.5) translateX(${transformX}%) translateY(${transformY}%)`;
+        })
+        zoom.addEventListener('mouseout', () => {
+            imgZoom.style.opacity = 0;
+        })
+       
+    </script>
+    <script src="~/controllers/product_detail.js" asp-append-version="true"></script>
+    <script src="~/lib/izi-toast-mater/js/izitoast.min.js"></script>
+    @(!string.IsNullOrEmpty(ViewBag.Schema) ? Html.Raw(ViewBag.Schema) : "")
+    @(!string.IsNullOrEmpty(ViewBag.SchemaStar) ? Html.Raw(ViewBag.SchemaStar) : "")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+}
+@section Styles{
+    <link href="/css/product.css" rel="stylesheet" asp-append-version="true" />
+}
+<input type="hidden" id="input_news_id" value="@Model.id" />
+<input type="hidden" id="input_category_id" value="@Model.categoryId" />
+<input type="hidden" id="input_parent_id" value="@productDetail.categoryObj?.parentId" />
+<!-- Product Left Sidebar Start -->
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<section class="blog-section product-section">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-xxl-9 col-xl-8 col-lg-7 wow fadeInUp">
+                <div class="row g-4">
+                    <div class="col-xl-6 wow fadeInUp">
+                        <div class="product-left-box">
+                            <div class="row g-2">
+                                <div class="col-12">
+                                    <div class="product-main-1 no-arrow img_box_shadow_css">
+                                        <div>
+                                            <div class="slider-image zoom product_detail_custom_modifiel">
+                                                <img src="@(string.IsNullOrEmpty(Model.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : Model.imageObj?.smallUrl)"
+                                                     class="img-fluid blur-up lazyload w-100 h-100">
+                                                <img src="@(string.IsNullOrEmpty(Model.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : Model.imageObj?.smallUrl)"
+                                                     class="img-fluid blur-up lazyload w-100 h-100" id="imgZoom" alt="@Model.name">
+                                            </div>
+                                        </div>
+                                        @if (Model.imageListObj != null && Model.imageListObj.Any())
+                                        {
+                                            @foreach (var item in Model.imageListObj)
+                                            {
+                                                <div>
+                                                    <a class="slider-image div_image_product_slick">
+                                                        <img src="@(string.IsNullOrEmpty(item.smallUrl) ? "/img_dev/error/avatar.png" : item.smallUrl)"
+                                                             class="img-fluid blur-up lazyload w-100 h-100" style="aspect-ratio: 1/1.3;object-fit: cover;"
+                                                             onerror="this.onerror=null;this.src='/img_dev/error/product.png';" id="imgZoom_${@item.id}" alt="@item.name">
+                                                    </a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="bottom-slider-image left-slider no-arrow slick-top">
+                                        <div>
+                                            <div class="sidebar-image slider_bar_product_css">
+                                                <img src="@(string.IsNullOrEmpty(Model.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : Model.imageObj?.smallUrl)"
+                                                     class="img-fluid blur-up lazyload w-100 h-100"
+                                                     onerror="this.onerror=null;this.src='/img_dev/error/product.png';" alt="@Model.name">
+
+                                            </div>
+                                        </div>
+
+                                        @if (Model.imageListObj != null && Model.imageListObj.Any())
+                                        {
+                                            @foreach (var item in Model.imageListObj)
+                                            {
+                                                <div>
+                                                    <div class="sidebar-image slider_bar_product_css">
+                                                        <img src="@(string.IsNullOrEmpty(item.smallUrl) ? "/img_dev/error/avatar.png" : item.smallUrl)"
+                                                             class="img-fluid blur-up lazyload w-100 h-100"
+                                                             onerror="this.onerror=null;this.src='/img_dev/error/product.png';" alt="@item.name">
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="right-box-contain">
+                            <h1 class="name product_detail_h1">@Model.name</h1>
+                            <div class="price-rating">
+                                <a href="@CommonConstants.URL_SITTO_VN/@Model.metaUrl-@Model.id" class="theme-color price fs-4" style="margin-top: -6px" target="_blank">Liên hệ</a>
+                            </div>
+                            @if ((proppertyFilter2 != null && proppertyFilter2.Any()) ||
+                            (proppertyFilter1 != null && proppertyFilter1.Any()) ||
+                            (proppertyFilter3 != null && proppertyFilter3.Any()) ||
+                            (proppertyFilter0 != null && proppertyFilter0.Any()))
+                            {
+                                <div class="buy-box mt-2">
+                                    @* <a class="title_font" style="color: #000;font-weight: 600" href="javascript:void(0)" id="btn_copy_link">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                Sao chép đường dẫn
+                                </a>*@
+                                    <h3 class="fw-bolder">Công dụng</h3>
+                                </div>
+                                <table class="table table-bordered table-striped" id="table_property_filter" style="text-align: left;">
+                                    <tbody>
+                                        @if (proppertyFilter2 != null && proppertyFilter2.Any())
+                                        {
+                                            <tr>
+                                                <th scope="row"><h6 class="">Dạng</h6></th>
+                                                <td>
+                                                    @for (var i = 0; i < proppertyFilter2.Count(); i++)
+                                                    {
+                                                        var item = proppertyFilter2.ElementAt(i);
+                                                        <span class="title_font notranslate">@item</span>
+                                                        @if (i != proppertyFilter2.Count() - 1)
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (proppertyFilter5 != null && proppertyFilter5.Any())
+                                        {
+                                            <tr>
+                                                <th scope="row"><h6 class="">Quy cách đóng gói</h6></th>
+                                                <td>
+                                                    @for (var i = 0; i < proppertyFilter5.Count(); i++)
+                                                    {
+                                                        var item = proppertyFilter5.ElementAt(i);
+                                                        <span class="title_font notranslate">@item</span>
+                                                        @if (i != proppertyFilter5.Count() - 1)
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (proppertyFilter1 != null && proppertyFilter1.Any())
+                                        {
+                                            <tr>
+                                                <th scope="row"><h6 class="">Cách sử dụng</h6></th>
+                                                <td>
+                                                    @for (var i = 0; i < proppertyFilter1.Count(); i++)
+                                                    {
+                                                        var item = proppertyFilter1.ElementAt(i);
+                                                        <span class="title_font notranslate">@item</span>
+                                                        @if (i != proppertyFilter1.Count() - 1)
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (proppertyFilter3 != null && proppertyFilter3.Any())
+                                        {
+                                            <tr>
+                                                <th scope="row"><h6 class="">Đối tượng sử dụng</h6></th>
+                                                <td>
+                                                    @for (var i = 0; i < proppertyFilter3.Count(); i++)
+                                                    {
+                                                        var item = proppertyFilter3.ElementAt(i);
+                                                        <span class="title_font notranslate">@item</span>
+                                                        @if (i != proppertyFilter3.Count() - 1)
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        @if (proppertyFilter0 != null && proppertyFilter0.Any())
+                                        {
+                                            <tr>
+                                                <th scope="row"><h6 class="">Nhóm công dụng</h6></th>
+                                                <td>
+                                                    @for (var i = 0; i < proppertyFilter0.Count(); i++)
+                                                    {
+                                                        var item = proppertyFilter0.ElementAt(i);
+                                                        <span class="title_font notranslate">@item</span>
+                                                        @if (i != proppertyFilter0.Count() - 1)
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                      
+                                        @if (proppertyFilter4 != null && proppertyFilter4.Any())
+                                        {
+                                            <tr>
+                                                <th scope="row"><h6 class="">Công dụng chính</h6></th>
+                                                <td>
+                                                    @for (var i = 0; i < proppertyFilter4.Count(); i++)
+                                                    {
+                                                        var item = proppertyFilter4.ElementAt(i);
+                                                        <span class="title_font notranslate">@item</span>
+                                                        @if (i != proppertyFilter4.Count() - 1)
+                                                        {
+                                                            <span>,</span>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+
+                            <div class="pickup-box" style="border-bottom: unset !important">
+                                @if (Model.summaryInfo != null)
+                                {
+                                    <div class="product-title">
+                                        <h3 class="fw-bold mt-2">Mô tả</h3>
+                                    </div>
+                                }
+                                <div class="pickup-detail pt-2">
+                                    <h5 class="text-black title_font product_detail_name_h4">
+                                        @Model.summaryInfo
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="product-packege">
+                                @if (productList != null && productList.Any())
+                                {
+                                    <h3 class="title_detail_product fw-bolder notranslate">Tag:</h3>
+                                }
+                                <ul class="select-packege">
+                                    @if (productList != null && productList.Any())
+                                    {
+                                        int itemCount = 0;
+                                        foreach (var item in productList)
+                                        {
+                                            <li>
+                                                <a href="/danh-sach-san-pham/@item.categoryObj?.metaUrl/@item.metaUrl" class="badge title_font_item_css active">@item.name</a>@*@(itemCount == 0 ? "active" : "")*@
+                                            </li>
+                                            itemCount++;
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            <div class="buy-box">
+                                @*<span class="tititle_name">Chia sẻ :</span>*@
+                                <a class="badge text-white" href="#" style="background: var(--theme-color);font-size: 15px;height: 26px;display: flow-root;" data-bs-toggle="tooltip" data-bs-placement="top" title="Chia sẻ Facebook" id="facebook_share">
+                                    <img class="" style="height: 20px;margin-top: -3px" src="~/img_dev/facebook.png" alt="@Model.name" />
+                                    @*<img class="w-100 h-100" src="~/img_dev/icon_facebook.png" alt="@Model.name" />*@
+                                    <span>Chia sẻ</span>
+                                </a>
+                                <a class="badge text-white" style="background: var(--theme-color);font-size: 15px;height: 26px;display: flow-root;" data-bs-toggle="tooltip" data-bs-placement="top" title="Chia sẻ Zalo" id="zalo_share" href="">
+                                    <img class="h-100" src="~/img_dev/zalo_icon.png" />
+                                    <span>Chia sẻ</span>
+                                </a>
+                                <a class="title_font" style="color: #000;font-weight: 600" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" title="Sao chép đường dẫn" id="btn_copy_link">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 wow fadeInUp">
+
+                        <div class="product-rating">
+                          @*  <ul class="rating mx-3">
+                                <li>
+                                    <i data-feather="star" class="@(Model.star >= 1 ? "fill" : "")"></i>
+                                </li>
+                                <li>
+                                    <i data-feather="star" class="@(Model.star >= 2 ? "fill" : "")"></i>
+                                </li>
+                                <li>
+                                    <i data-feather="star" class="@(Model.star >= 3 ? "fill" : "")"></i>
+                                </li>
+                                <li>
+                                    <i data-feather="star" class="@(Model.star >= 4 ? "fill" : "")"></i>
+                                </li>
+                                <li>
+                                    <i data-feather="star" class="@(Model.star >= 5 ? "fill" : "")"></i>
+                                </li>
+
+                            </ul>*@
+
+                           @* <div class="rating">
+                                @{
+                                    if (Model.star is int)
+                                    {
+                                        for (var i = 1; i <= Model.star; i++)
+                                        {
+                                            <span class="star fs-4">&#9733;</span>
+                                        }
+                                        if (Model.star <= 5)
+                                        {
+                                            <span class="half-star fs-4">&#9733;</span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        var integerPart = (int)Model.star;
+                                        var decimalPart = Model.star - integerPart;
+
+                                        for (var i = 1; i <= integerPart; i++)
+                                        {
+                                            <span class="star fs-4">&#9733;</span>
+                                        }
+
+                                        if (decimalPart >= 0.5)
+                                        {
+                                            <span class="half-star fs-4">&#9733;</span>
+                                            
+                                        }
+                                       
+                                    }
+                                }
+                            </div>*@
+
+                            <div class="rating">
+                                @{
+                                    if (Model.star.HasValue)
+                                    {
+                                        var starValue = Model.star.Value; // Access the underlying value
+                                        if (starValue is int)
+                                        {
+                                            for (var i = 1; i <= starValue; i++)
+                                            {
+                                                <span class="star fs-4">&#9733;</span>
+                                            }
+                                            if (starValue <= 5)
+                                            {
+                                                <span class="half-star fs-4">&#9733;</span>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            var integerPart = (int)starValue;
+                                            var decimalPart = starValue - integerPart;
+
+                                            for (var i = 1; i <= integerPart; i++)
+                                            {
+                                                <span class="star fs-4">&#9733;</span>
+                                            }
+
+                                            if (decimalPart >= 0.5)
+                                            {
+                                                <span class="half-star fs-4">&#9733;</span>
+                                            }
+                                        }
+                                    }
+                                }
+                            </div>
+                            @if (Model.countFeedback > 0)
+                            {
+                                <h5 class="ms-2">(@Model.countFeedback số lượt chọn)</h5>
+                            }
+
+                      @*      @if (Model.countFeedback.HasValue && Model.countFeedback == 0.0)
+                            {
+                                <h5 class="ms-2">(@Model.countFeedback số lượt chọn)</h5>
+                            }
+*@
+                        </div>
+                        <div class="product-section-box py-4">
+                            <ul class="nav nav-tabs custom-nav" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                                            data-bs-target="#description" type="button" role="tab"
+                                            aria-controls="description" aria-selected="true">
+                                        Thông tin sản phẩm
+                                    </button>
+                                </li>
+
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="info-tab" data-bs-toggle="tab"
+                                            data-bs-target="#info" type="button" role="tab" aria-controls="info"
+                                            aria-selected="false">
+                                        Câu hỏi thường gặp
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content custom-tab" id="myTabContent">
+                                <div class="tab-pane fade show active" id="description" role="tabpanel"
+                                     aria-labelledby="description-tab">
+                                    <div class="product-description">
+                                        <div class="nav-desh div_detail_wrapper">
+                                            @if (Model.detail != null)
+                                            {
+                                                <p style="font-family: sans-serif;">
+                                                    @Html.Raw(Model.detail)
+                                                </p>
+                                            }
+                                            else
+                                            {
+                                                <div class="d-flex align-items-center flex-column mx-auto">
+                                                    <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                                                    <span class="text-muted">Không có dữ liệu!</span>
+                                                </div>
+                                            }
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                    <div class="table-responsive">
+                                        <section class="faq-box-contain section-b-space">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-xl-12">
+                                                        <div class="faq-accordion">
+                                                            <div class="accordion" id="accordionExample">
+                                                                @if (schemaList != null && schemaList.Any())
+                                                                {
+                                                                    foreach (var item in schemaList)
+                                                                    {
+
+                                                                        <div class="accordion-item">
+                                                                            <h2 class="accordion-header" id="headingOne">
+                                                                                <button class="accordion-button product_isQuestion" type="button" data-bs-toggle="collapse"
+                                                                                        data-bs-target="#collapseOne_@(item.id)" aria-expanded="true" aria-controls="collapseOne">
+                                                                                    @item.title  <i class="fa-solid fa-angle-down"></i>
+                                                                                </button>
+                                                                            </h2>
+                                                                            <div id="collapseOne_@(item.id)" class="accordion-collapse product_content collapse @(item.id == schemaList[0].id ? "show" : "")"
+                                                                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                                                <div class="accordion-body">
+                                                                                    <p>
+                                                                                        @item.contents
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="d-flex align-items-center flex-column mx-auto">
+                                                                        <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                                                                        <span class="text-muted">Không có dữ liệu!</span>
+                                                                    </div>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-4 col-lg-5 d-lg-block d-none">
+                <div class="left-sidebar-box">
+                    @* <div class="left-search-box">
+                    <div class="search-box">
+                    <input type="search" class="form-control" id="exampleFormControlInput4"
+                    placeholder="Search....">
+                    </div>
+                    </div>*@
+
+                    <div class="accordion left-accordion-box m-0" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                <button class="accordion-button text-uppercase" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                    Sản phẩm nổi bật
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                 aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body pt-0">
+                                    <div class="recent-post-box slide_div_isHot_data" id="div_isHot_data">
+                                        @if (productIshot != null && productIshot.Any())
+                                        {
+                                            @foreach (var item in productIshot)
+                                            {
+                                                <div class="product_detail_ishot">
+                                                    <div class="recent-box">
+                                                        <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl" class="recent-image">
+                                                            <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : item.imageObj?.smallUrl)"
+                                                                 class="img-fluid blur-up lazyload" alt="@item.name"
+                                                                 onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                                        </a>
+
+                                                        <div class="recent-detail">
+                                                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="@item.name" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                                <h5 class="recent-name name_item">@item.name</h5>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                        @if (productIshots != null && productIshots.Any())
+                                        {
+                                            @foreach (var item in productIshots)
+                                            {
+                                                <div>
+                                                    <div class="recent-box">
+                                                        <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl" class="recent-image">
+                                                            <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : item.imageObj?.smallUrl)"
+                                                                 class="img-fluid blur-up lazyload" alt="@item.name"
+                                                                 onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                                        </a>
+
+                                                        <div class="recent-detail">
+                                                            <a data-bs-toggle="tooltip" data-bs-placement="top" title="@item.name" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                                <h5 class="recent-name name_item">@item.name</h5>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                   @* <button class="next-prow-detail ring_ring"> <i class="fas fa-chevron-right"></i></button>*@
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
+                                    Danh mục liên quan
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse collapse show"
+                                 aria-labelledby="panelsStayOpen-headingTwo">
+                                <div class="accordion-body p-0">
+                                    <div class="category-list-box">
+                                        <ul @*id="div_list_category"*@>
+                                            @if (categoryLv2 != null && categoryLv2.Any())
+                                            {
+                                                foreach (var item in categoryLv2)
+                                                {
+                                                    <li>
+                                                        <a href="/danh-sach-san-pham/@item.metaUrl">
+                                                            <div class="category-name">
+                                                                <h5 class="name_item text-uppercase product_all_name_item">@item.name</h5>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Product Left Sidebar End -->
+@if (data != null && data.Any())
+{
+    <section class="product-section-3 py-5">
+        <div class="container-fluid-lg">
+            <div class="title">
+                <h2>SẢN PHẨM LIÊN QUAN</h2>
+                <span class="title-leaf">
+                    <svg class="icon-width">
+                        <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                    </svg>
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <!--arrow-slider -->
+                    <div class="slider_product_relate img-slider">
+
+                        @foreach (var item in data)
+                        {
+                            <div>
+                                <div class="product-box-4 wow fadeInUp product_detail_css">
+                                    <div class="product-image-2 product_related">
+                                        <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                            <img style="margin: unset !important;" data-src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : item.imageObj?.smallUrl)"
+                                                 class="img-fluid blur-up lazyload w-100 h-100 custom_image product_img_item" onerror="this.onerror=null;this.src='/img_dev/error/product.png';" alt="data.name">
+                                        </a>
+                                    </div>
+                                    <div class="product-detail product_detail_item_css mt-2">
+
+                                        <span class="category_clamp_title product_item_category_css" data-bs-toggle="tooltip" data-bs-placement="top" title="@item.categoryObj?.name">@item.categoryObj?.name</span>
+                                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="@item.name" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                            <span class="name_clamp_product mt-2">@item.name</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="btn_slide_product">
+                        <button class="prev-btn_product"> <i class="fas fa-chevron-left"></i></button>
+                        <button class="next-btn_product"> <i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+}

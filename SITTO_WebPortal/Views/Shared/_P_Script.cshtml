@@ -1,0 +1,189 @@
+﻿ @using SITTO_WebPortal.Lib;
+@using System.Collections.Generic;
+@using Newtonsoft.Json;
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+
+<!-- latest jquery-->
+<script src="/assets/js/jquery-3.6.0.min.js"></script>
+
+<!-- jquery ui-->
+<script src="/assets/js/jquery-ui.min.js"></script>
+
+<!-- Bootstrap js-->
+<script src="/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/bootstrap/bootstrap-notify.min.js"></script>
+<script src="/assets/js/bootstrap/popper.min.js"></script>
+
+<!-- feather icon js-->
+<script src="/assets/js/feather/feather.min.js"></script>
+<script src="/assets/js/feather/feather-icon.js"></script>
+
+<!-- Lazyload Js -->
+<script src="/assets/js/lazysizes.min.js"></script>
+
+<!-- Slick js-->
+<script src="/assets/js/slick/slick.js"></script>
+<script src="/assets/js/slick/slick-animation.min.js"></script>
+<script src="/assets/js/custom-slick-animated.js"></script>
+<script src="/assets/js/slick/custom_slick.js"></script>
+
+<script>
+    var Agiricultal = `@CommonConstants.PRODUCT_AGRICULTURAL`;
+    var Seafood = `@CommonConstants.PRODUCT_SEAFOOD`; 
+    var KnowAgricultal = `@CommonConstants.CATEGORYCODE_KNOWLEDGE_AGRICULTURAL`;
+    var KnowSeafood = `@CommonConstants.CATEGORYCODE_KNOWLEDGE_SEAFOOD`;
+    var dataListCategory = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@ViewBag.CategoryList))'
+    const LIST_CATEGORY_ID = JSON.parse(dataListCategory);
+    var dataKnowledgeListCategory = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(@ViewBag.KnowledgeCategoryList))'
+    const LIST_CATEGORY_KNOWLEDGE_ID = JSON.parse(dataKnowledgeListCategory);
+</script>
+<!-- Range slider js -->
+<script src="/assets/js/ion.rangeSlider.min.js"></script>
+
+<!-- Auto Height Js -->
+<script src="/assets/js/auto-height.js"></script>
+
+
+<!-- Quantity js -->
+<script src="/assets/js/quantity-2.js"></script>
+
+<!-- Fly Cart Js -->
+<script src="/assets/js/fly-cart.js"></script>
+
+<!-- Timer Js -->
+@*<script src="../assets/js/timer1.js"></script>
+<script src="../assets/js/timer2.js"></script>*@
+
+<!-- Copy clipboard Js -->
+<script src="/assets/js/clipboard.min.js"></script>
+<script src="/assets/js/copy-clipboard.js"></script>
+
+<script src="/assets/lib/izi-toast-mater/js/iziToast.min.js"></script>
+<script src="~/js/moment.js"></script>
+<!-- WOW js -->
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/custom-wow.js"></script>
+
+<script src="~/assets/lib/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="~/assets/lib/sweetalert2/sweetalert2.min.js"></script>
+<script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            //pageLanguage: 'en',
+            //includedLanguages: 'en,vi',
+            autoDisplay: true,
+        }, 'google_translate_element');
+    }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script src="~/controllers/gg_stranlate.js" asp-append-version="true"></script>
+
+<script src="~/controllers/search.js" asp-append-version="true"></script>
+<!-- script js -->
+<script src="/assets/js/script.js"></script>
+
+<script src="~/js/moment.js"></script>
+<script src="~/lib/jquery-typeahead-master/dist/jquery.typeahead.min.js"></script>
+<script src="~/js/utility_lib.js" asp-append-version="true"></script>
+<script src="~/controllers/all_page.js" asp-append-version="true"></script>
+
+<script src="~/assets/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/assets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="~/controllers/chat_bot.js" asp-append-version="true"></script>
+<script src="~/js/ajax_search.js" asp-append-version="true"></script>
+
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<!-- Messenger Plugin chat Code -->
+<div id="fb-root"></div>
+
+<!-- Your Plugin chat code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+    var openMessengerButton = document.getElementById('open-messenger');
+    var chatBox = document.getElementById('chat-box');
+    window.onload = function () {
+        FB.CustomerChat.hideDialog();
+    };
+    openMessengerButton.addEventListener('click', function () {
+        FB.CustomerChat.showDialog();
+        chatBox.style.display = 'none';
+    });
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "130478396985538");
+    chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v18.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-167883747-1"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-167883747-1');
+</script>
+@*<script>
+    var openMessengerButton = document.getElementById('open-messenger');
+    var chatBox = document.getElementById('chat-box');
+    window.onload = function () {
+        FB.CustomerChat.hideDialog();
+    };
+    openMessengerButton.addEventListener('click', function () {
+        FB.CustomerChat.showDialog();
+        chatBox.style.display = 'none';
+    });
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "151972681313211");
+    chatbox.setAttribute("attribution", "biz_inbox");
+
+</script>
+
+<!-- Your SDK code -->
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v18.0'
+        });
+    };
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>*@

@@ -1,0 +1,180 @@
+﻿@{
+    var data = ViewBag.NewAndProduct as M_NewAndProduct;
+    List<M_News> listIntroduce;
+    List<M_News> listKnowledge;
+    List<M_Product> listProductAgriculture;
+    List<M_Product> listProductSeafood;
+
+    if (data != null)
+    {
+        listIntroduce = data.introduceObjs as List<M_News>;
+        listKnowledge = data.knowledgeObjs as List<M_News>;
+        listProductAgriculture = data.productAgricultureObjs as List<M_Product>;
+        listProductSeafood = data.productSeafoodObjs as List<M_Product>;
+    }
+    else
+    {
+        listIntroduce = new List<M_News>();
+        listKnowledge = new List<M_News>();
+        listProductAgriculture = new List<M_Product>();
+        listProductSeafood = new List<M_Product>();
+    }
+}
+<!-- home section start -->
+
+    <section class="home-section-2 home-section-small div_hei section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row g-4">
+                <div class="col-xxl-6 col-md-6 col-12 col-lg-6 div_new_product_custom">
+                    <div class="slide_list_new h-100 product-wrapper">
+                        @if (listKnowledge != null && listKnowledge.Any())
+                        {
+                            @foreach (var item in listKnowledge)
+                            {
+                                <div>
+                                    <div class="blog-box ratio_45">
+                                        <div class="div_list_news_product new_product_frame_item">
+                                        <a class="h-100 frame_new_product w-100" href="/kien-thuc/@item.newcategoryObj?.metaUrl/@item.metaUrl" style="background-size: contain !important;aspect-ratio: 1/1;">
+                                                <img @*style="object-fit: cover"*@ src="@(string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)" class="blur-up lazyload bg-img h-100 w-100" alt="@item.title"
+                                                     onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                            </a>
+                                        </div>
+                                        <div class="blog-detail">
+                                            <a class="clamp_des_css" href="/kien-thuc/@item.newcategoryObj?.metaUrl/@item.metaUrl">
+                                                <h3 class="new_product_title_name new_product_title_hov">@item.title</h3>
+                                            </a>
+                                            <p class="clamp_des_css_new_product mt-1 description_new_product">@item.description</p>
+                                            @if (item.createdAt != null)
+                                            {
+                                                <span class="time mt-2"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span class="knowledge_title_item_custom new_product_publish">@item.createdAt?.ToString("dd-MM-yyyy")</span></span>
+
+                                            }
+
+                                            <a href="/kien-thuc/@item.newcategoryObj?.metaUrl/@item.metaUrl" class="new_product_custom_item d-block">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        @if (listProductSeafood != null && listProductSeafood.Any())
+                        {
+                            @foreach (var item in listProductSeafood)
+                            {
+                                <div>
+                                    <div class="blog-box ratio_45">
+                                        <div class="blog-box-image div_list_news_product new_product_frame_item">
+                                            <a class="h-100 item_new_respon mx-auto frame_new_product" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                            <img style="object-fit: cover" src="@(string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)" class="p-2 blur-up lazyload bg-img h-100 w-100" alt="@item.name"
+                                                     onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                            </a>
+                                        </div>
+                                        <div class="blog-detail">
+                                            <a class="clamp_des_css" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                <h3 class="new_product_title_name new_product_title_hov">@item.name</h3>
+                                            </a>
+
+                                            @if (item.createdAt != null)
+                                            {
+                                                <span class="time mt-2"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span class="knowledge_title_item_custom new_product_publish">@item.createdAt?.ToString("dd-MM-yyyy")</span></span>
+
+                                            }
+
+                                            <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl" class="new_product_custom_item d-block">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="div_btn_slide_new">
+                        <button class="prev-btn_new_right">  <i class="fas fa-chevron-left"></i></button>
+                        <button class="next-btn_new_right"> <i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="top-selling-section col-xxl-6 col-lg-6 col-md-6 col-12 ratio_65">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="top-selling-box">
+                                <div class="slider_product_news" id="slider_div_highlight_products">
+                                    @if (listKnowledge != null && listKnowledge.Any())
+                                    {
+                                        foreach (var item in listKnowledge)
+                                        {
+                                            <div class="top-selling-contain wow d-flex mb-2 fadeInUp p-1">
+                                                <a href="/kien-thuc/@item.newcategoryObj?.metaUrl/@item.metaUrl" class="top-selling-image product_news_element frame_new_product">
+                                                    <img src="@(string.IsNullOrEmpty(item.imageObj?.mediumUrl) ? "/img_dev/error/product.png" : item.imageObj?.mediumUrl)"
+                                                         class="img-fluid blur-up frame_new_product lazyload w-100 h-100" style="object-fit: cover" alt="@item.title"
+                                                         onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+
+
+                                                </a>
+                                                <div class="top-selling-detail list_new_product_css">
+                                                    <a href="/kien-thuc/@item.newcategoryObj?.metaUrl/@item.metaUrl">
+                                                        <span class="clamp_title_css new_product_title_hov">@item.title</span>
+                                                    </a>
+                                                    @if (item.createdAt != null)
+                                                    {
+                                                        <span class="time mt-2"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span class="knowledge_title_item_custom new_product_publish">@item.createdAt?.ToString("dd-MM-yyyy")</span></span>
+
+                                                    }
+                                                    <a class="new_product_custom_item" href="/kien-thuc/@item.newcategoryObj?.metaUrl/@item.metaUrl">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    @if (listProductSeafood != null && listProductSeafood.Any())
+                                    {
+                                        foreach (var item in listProductSeafood)
+                                        {
+                                            <div class="top-selling-contain wow d-flex mb-2 fadeInUp p-1">
+                                                <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl" class="top-selling-image product_news_element frame_new_product">
+                                                    <img src="@(string.IsNullOrEmpty(item.imageObj?.mediumUrl) ? "/img_dev/error/product.png" : item.imageObj?.mediumUrl)"
+                                                         class="img-fluid blur-up frame_new_product lazyload w-100 h-100" style="object-fit: contain" alt="@item.name"
+                                                         onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                                                </a>
+                                                <div class="top-selling-detail list_new_product_css">
+                                                    <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                        <span class="clamp_title_css new_product_title_hov" style="font-size: 15px;font-weight: 600">@item.name</span>
+                                                    </a>
+                                                    @if (item.createdAt != null)
+                                                    {
+                                                        <span class="time mt-2"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span class="knowledge_title_item_custom new_product_publish">@item.createdAt?.ToString("dd-MM-yyyy")</span></span>
+
+                                                    }
+                                                    <a class="new_product_custom_item" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    @if (listProductAgriculture != null && listProductAgriculture.Any())
+                                    {
+                                        foreach (var item in listProductAgriculture)
+                                        {
+                                            <div class="top-selling-contain wow d-flex mb-2 fadeInUp p-1">
+                                                <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl" class="top-selling-image product_news_element frame_new_product">
+                                                <img src="@(string.IsNullOrEmpty(item.imageObj?.mediumUrl) ? "/img_dev/error/product.png" : item.imageObj?.mediumUrl)"
+                                                         class="img-fluid blur-up frame_new_product lazyload w-100 h-100" style="object-fit: contain" alt="@item.name"
+                                                         onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                                                </a>
+
+                                                <div class="top-selling-detail list_new_product_css">
+                                                    <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                        <span class="clamp_title_css name_clamp new_product_title_hov">@item.name</span>
+                                                    </a>
+
+                                                    <a href="@item.name" class="new_product_custom_item">Chi tiết <i class="fa-solid fa-arrow-right"></i></a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Home Section End -->

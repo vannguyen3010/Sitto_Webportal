@@ -1,0 +1,51 @@
+﻿@{
+    var data = ViewBag.Popup as List<M_Banner>;
+}
+
+@if (data != null && data.Any())
+{
+    <div id="myModal" class="modal">
+        <div class="modal_content">
+            <div class="modal_popup">
+                <div class="slider_popup">
+                    @foreach (var item in data)
+                    {
+                        <div>
+                            <img class="w-100 h-100" src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)" alt="@item.title" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal_content {
+        background-color: #fff;
+        width: 500px;
+        margin: 0 auto;
+        margin-top: 100px;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px;
+    }
+
+    .modal_popup {
+        width: 100%;
+    }
+
+    .modal_content img {
+        object-fit: cover
+    }
+</style>

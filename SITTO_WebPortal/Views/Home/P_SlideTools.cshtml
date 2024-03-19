@@ -1,0 +1,41 @@
+﻿
+<section id="div_tool_section">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>CÔNG CỤ TIỆN ÍCH</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+               @* three-slider_slide*@
+                <div class="ratio_65 product-wrapper" id="div_tools_main">
+                   @* @if (dataTools != null && dataTools.Any())
+                    {
+                        foreach (var item in dataTools)
+                        {
+                            <div>
+                                <div class="offer-banner hover-effect">
+                                    <img src="@(string.IsNullOrEmpty(item.urlImage) ? "/img_dev/error/product.png" : item.urlImage)" class="img-fluid bg-img blur-up lazyload"
+                                         alt="@item.name">
+                                    <div class="banner-detail">
+                                        <h5 class="theme-color">@item.name</h5>
+                                    </div>
+                                    <div class="offer-box">
+                                        <a href="@item.metaUrl"
+                                                class="btn-category btn theme-bg-color text-white">
+                                            Xem thêm
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }*@
+                </div>
+                <div class="div_btn_slide_product">
+                    <button class="prev-btn btn_left btn_left_tool">  <i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn btn_right btn_right_tool"> <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+       @* <div class="row text-center p-3 mt-2"><a href="/san-pham?type=1">Xem thêm</a></div>*@
+    </div>
+</section>

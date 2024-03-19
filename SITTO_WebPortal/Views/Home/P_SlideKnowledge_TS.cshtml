@@ -1,0 +1,56 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var data = ViewBag.KnowledgeCategory as List<M_NewCategory>;
+    //var listKnowSeaFood = data?.Where(x => x.id == CommonConstants.CATEGORYCODE_KNOWLEDGE_SEAFOOD).Select(y => y.childObj).FirstOrDefault().ToList();
+    var dataId = data?.FirstOrDefault(x => x.id == CommonConstants.CATEGORYCODE_KNOWLEDGE_SEAFOOD)?.childObj?.ToList();
+    var listKnowSeaFood = dataId?.OrderBy(or => or.reOrder).ToList();
+}
+
+
+<section class="product-section-3 div_img" data-id="@CommonConstants.CATEGORYCODE_KNOWLEDGE_SEAFOOD" id="div_knowlegde_seafood_js">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>KIẾN THỨC THỦY SẢN</h2>
+        </div>
+        <div class="title title-flex-2">
+            <ul class="nav nav-tabs scroll_nav_css tab-style-color-2 tab-style-color" id="myTab">
+                @if (listKnowSeaFood != null && listKnowSeaFood.Any())
+                {
+                    <li class="nav-item">
+                        <button value="12" data-url="kien-thuc-thuy-san" onclick="OnchangeListKnowledgeHotSeafood(this, event, 12)" class="nav-link btn active btn_category_knowledge_seafood text-uppercase">
+                            Tất cả
+                        </button>
+                    </li>
+                    for (int i = 0; i < listKnowSeaFood.Count; i++)
+                    {
+                        <li class="nav-item">
+                            <button value="@listKnowSeaFood[i].id" data-url="@listKnowSeaFood[i].metaUrl" onclick="OnchangeListKnowledgeHotSeafood(this, event, @listKnowSeaFood[i].id)" class="nav-link btn btn_category_knowledge_seafood text-uppercase">
+                                @listKnowSeaFood[i].name
+                            </button>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!--arrow-slider -->@*img-slider*@
+                <div class="arrow-slider product-wrapper" id="div_knowledge_seafood">
+                    @if (listKnowSeaFood != null)
+                    {
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                            <span class="text-muted">Không có dữ liệu!</span>
+                        </div>
+                    }
+                </div>
+                <div class="div_btn_slide_knowledt">
+                    <button class="prev-btn_agriculture_know">  <i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn_agriculture_know"> <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center p-3"><a href="javascript:void(0)" onclick="RedirectToKnowSeafood(this)" id="btn_all_know_seafood" data-url="">Xem thêm</a></div>
+    </div>
+</section>

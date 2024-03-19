@@ -1,0 +1,204 @@
+﻿@using SITTO_WebPortal.Lib;
+
+@{
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+    var dataProductsSearch = ViewBag.DataProducts as List<M_Product>;
+    var dataNewSearch = ViewBag.DataNews as List<M_News>;
+}
+@section Styles{
+    <link href="/css/search.css" rel="stylesheet" asp-append-version="true" />
+}
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<section>
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>
+                KẾT QUẢ TÌM KIẾM
+                @if (ViewBag.Keywork != null)
+                {
+                    <span class="title_search_css notranslate">
+                        "@ViewBag.Keywork"
+                    </span>
+                }
+                else
+                {
+                    <span class="text-danger notranslate">
+                        "Không thấy từ khóa tìm kiếm"
+                    </span>
+                }
+
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="section-b-space shop-section div_img">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>SẢN PHẨM</h2>
+            <span class="title-leaf">
+                <svg class="icon-width div_img">
+                    <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                </svg>
+            </span>
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+
+                <div id="div_product_search">
+                    @if (dataProductsSearch != null && dataProductsSearch.Any())
+                    {
+                        @foreach (var item in dataProductsSearch)
+                        {
+
+                            <div class="p-1">
+                                <div class="product-box-3 h-100 wow fadeInUp product_div_box_css bg-white">
+                                    <div class="search_setup_div">
+                                        <div class="product-image product_set_height_css h-100">
+                                            <a href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)"
+                                                     class="p-1 img-fluid blur-up lazyload custom_image_all" alt="@item.name"
+                                                     onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-footer product_footer_item">
+                                        <div class="product-detail p-2 div_item_know_css">
+                                            <span class="product_category_item clamp_name_clamp text-uppercase">@item.categoryObj?.name</span>
+                                            <a data-bs-toggle="tooltip" data-bs-placement="right" title="@item.name" href="/san-pham/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                <h4 class="name mt-1">@item.name</h4>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                            <span class="text-muted">Không có dữ liệu!</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section-b-space shop-section">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>BÀI VIẾT KIẾN THỨC</h2>
+            <span class="title-leaf">
+                <svg class="icon-width">
+                    <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                </svg>
+            </span>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="div_new_search">
+                    @if (dataNewSearch != null && dataNewSearch.Any())
+                    {
+                        @foreach (var item in dataNewSearch)
+                        {
+                            @if (item.categoryObj?.typeId == 4)
+                            {
+                                <div class="p-1">
+                                    <div class="product-box-3 h-100 wow fadeInUp product_div_box_css">
+                                        <div class="search_setup_div">
+                                            <div class="product-image product_height_css">
+                                                <a class="notranslate" href="/kien-thuc/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                    <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)"
+                                                         class="img-fluid p-1 blur-up lazyload w-100 h-100 custom_image" alt="@item.title"
+                                                         onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="product-footer product_footer_item">
+                                            <div class="product-detail p-2 div_item_know_css">
+                                                <span class="product_category_item clamp_name_clamp text-uppercase">@item.categoryObj?.name</span>
+                                                <a class="notranslate" data-bs-toggle="tooltip" data-bs-placement="right" title="@item.title" href="/kien-thuc/@item.categoryObj?.metaUrl/@item.metaUrl">
+                                                    <h4 class="name mt-1">@item.title</h4>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                            <span class="text-muted">Không có dữ liệu!</span>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="py-4">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>BÀI VIẾT VỀ CHÚNG TÔI</h2>
+            <span class="title-leaf">
+                <svg class="icon-width">
+                    <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                </svg>
+            </span>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="ratio_65 no-arrow product-wrapper slide_about">
+                    @if (dataNewSearch != null && dataNewSearch.Any())
+                    {
+                        @foreach (var item in dataNewSearch)
+                        {
+                            @if (item.categoryObj?.typeId == 1)
+                            {
+                                <div>
+                                    <div class="product-slider about_height wow fadeInUp ">
+                                        <a href="/ve-chung-toi/@item.categoryObj?.metaUrl/@item.metaUrl" class="product-slider-image">
+                                            <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)" class="w-100 blur-up lazyload h-100 w-100 rounded-3"
+                                                 alt="@item.title">
+                                        </a>
+
+                                        <div class="product-slider-detail">
+                                            <div>
+                                                @if (item.createdAt != null)
+                                                {
+                                                    <div class="blog-label">
+                                                        <span class="time"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span>@item.createdAt?.ToString("dd-MM-yyyy")</span></span>
+
+                                                    </div>
+                                                }
+                                                <a href="/ve-chung-toi/@item.categoryObj?.metaUrl/@item.metaUrl" class="d-block">
+                                                    <h3 class="text-title name_clamp font_item_modifeil">@item.title</h3>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                            <span class="text-muted">Không có dữ liệu!</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

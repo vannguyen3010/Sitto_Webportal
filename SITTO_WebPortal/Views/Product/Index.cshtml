@@ -1,0 +1,72 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+}
+@section Scripts{
+    <script src="~/controllers/product.js" asp-append-version="true"></script>
+}
+@section Styles{
+    <link href="~/css/product.css" rel="stylesheet" asp-append-version="true" />
+}
+<!-- Breadcrumb Section Start -->
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<!-- Breadcrumb Section End -->
+
+<section id="div_main_data_list" style="padding-top: unset !important">
+     @* <div class="product-section-3">
+    <div class="container-fluid-lg">
+    <div class="title title-flex-2">
+    <h2>SẢN PHẨM NÔNG NGHIỆP</h2>
+    <ul class="nav nav-tabs tab-style-color-2 tab-style-color" id="myTab">
+    <li class="nav-item">
+    <button class="nav-link btn active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all"
+    type="button">
+    Tất cả
+    </button>
+    </li>
+
+    <li class="nav-item">
+    <button class="nav-link btn" id="cooking-tab" data-bs-toggle="tab" data-bs-target="#cooking"
+    type="button">
+    Phân bón gốc
+    </button>
+    </li>
+    <li class="nav-item">
+    <button class="nav-link btn" id="cooking-tab" data-bs-toggle="tab" data-bs-target="#cooking"
+    type="button">
+    Phân bón lá
+    </button>
+    </li>
+
+    </ul>
+    </div>
+    <div class="row">
+    <div class="col-12">
+    <!--arrow-slider -->
+    <div class="slider-7_1 img-slider">
+    <div>
+    <div class="product-box-4 wow fadeInUp">
+    <div class="product-image-2">
+    <a href="/product_detail.html">
+    <img src="./assets/img_dev/sanpham3.png"
+    class="img-fluid blur-up lazyload" alt="">
+    </a>
+    </div>
+    <div class="product-detail">
+
+    <span class="badge text-white bg-success">Loại 1</span>
+    <a href="/product_detail.html">
+    <h5 class="name_clamp">SITTO FOPRO 12-3-43+TE (Gói 250g)</h5>
+    </a>
+    </div>
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+    </div>
+    <div class="row text-center p-3 mt-2"><a href="/san-pham?type=1">Xem thêm</a></div>
+    </div>
+    </div>*@
+</section>

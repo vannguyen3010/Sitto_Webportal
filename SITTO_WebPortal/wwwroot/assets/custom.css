@@ -1,0 +1,93 @@
+/*.disable_icon_dropdown:before {
+    display: none;
+}
+.course-info-02__category{
+    color: #0071dc;
+}
+.name_clamp{
+    width: 100%;
+    margin-top: 5px;
+    text-transform: capitalize;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    text-align: left;
+}
+.div_css_setting{
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border-radius: 100%;
+    border: 1px solid #d2d2d2;
+    padding: 2px;
+}
+.team-iamge_css{
+    width: 50%;
+    height: 150px;
+    border-radius: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.arrow-slider .slick-prev
+{
+    position: absolute;
+    left: -44px;
+    top: 50%;
+    z-index: 99;
+}
+.arrow-slider .slick-next{
+    position: absolute;
+    right: -44px;
+    top: 50%;
+}
+.accordion_item_css{
+    border: none;
+    padding: calc(18px + (25 - 18) * ((100vw - 320px) / (1920 - 320)));
+    background-color: #f8f8f8;
+}
+.btn_accordition_css{
+    background-color: #f8f8f8;
+    color: #222;
+    font-weight: 700;
+    padding: 0;
+}
+.product-tags-box ul{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.product-tags-box ul li{
+    z-index: 0;
+    padding: 4px 9px;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+}
+.prev-btn{
+    opacity: 0.5;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    position: relative;
+    top: -50%;
+}
+.next-btn{
+    position: relative;
+    left: 90%;
+    top: -50%;
+    opacity: 0.5;
+    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+}*/

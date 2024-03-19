@@ -1,0 +1,39 @@
+﻿@section Styles{
+    <link href="~/css/home.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts{
+    <script src="~/assets/lib/ladda/spin.min.js"></script>
+    <script src="~/assets/lib/ladda/ladda.min.js"></script>
+    <script src="~/controllers/home.js" asp-append-version="true"></script>
+
+}
+
+
+<partial name="P_Banner" />
+
+@*<div class="container">
+    <div class="row">
+        <partial name="P_ListNew" />
+    </div>
+</div>*@
+
+<partial name="P_ListNew" />
+<div class="row w-100">
+    <partial name="P_SlideProduct_NN" />
+
+    <partial name="P_SlideProduct_TS" />
+</div>
+
+<div class="row w-100">
+    <partial name="P_SlideKnowledge_NN" />
+
+    <partial name="P_SlideKnowledge_TS" />
+</div>
+
+<partial name="P_SlideTools" />
+
+<partial name="P_AboutUs" />
+
+<partial name="P_SlideSupport" />
+
+<partial name="P_Popup" />

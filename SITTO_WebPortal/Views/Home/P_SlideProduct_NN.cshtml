@@ -1,0 +1,55 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var data = ViewBag.Category as List<M_Category>;
+    //var listAgricultural = data?.Where(x => x.categoryCode == CommonConstants.CATEGORYCODE_AGRICULTURAL)?.Select(y => y.menuChildSecondObjs)?.FirstOrDefault().ToList();
+    var listAgricultural = data?.Where(x => x.categoryCode == CommonConstants.CATEGORYCODE_AGRICULTURAL).Select(y => y.menuChildSecondObjs).FirstOrDefault();
+    
+}
+
+<section class="product-section-3 bg_div_section" data-id="@CommonConstants.PRODUCT_AGRICULTURAL" id="div_product_agri_js">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>SẢN PHẨM NÔNG NGHIỆP</h2>
+        </div>
+        <div class="title title-flex-2">
+            <ul class="nav nav-tabs scroll_nav_css tab-style-color-2 tab-style-color" id="myTab">
+               
+                @if (listAgricultural != null && listAgricultural.Any())
+                {
+                    <li class="nav-item">
+                        <button id="btn_agricultural" value="" data-url="nong-nghiep" onclick="OnchangeListProdutHotAgricultural(this, event)" class="nav-link btn active btn_category_product text-uppercase">
+                            Tất cả
+                        </button>
+                    </li>
+                    for (int i = 0; i < listAgricultural.Count; i++)
+                    {
+                        <li class="nav-item">
+                            <button id="@listAgricultural[i].id" value="@listAgricultural[i].id" data-url="@listAgricultural[i].metaUrl" onclick="OnchangeListProdutHotAgricultural(this, event)" class="nav-link btn btn_category_product text-uppercase">
+                                @listAgricultural[i].name
+                            </button>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!--arrow-slider -->@*img-slider*@
+                <div class="arrow-slider product-wrapper" id="div_product_Agricultural">
+                  @if(listAgricultural != null )
+                    {
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                            <span class="text-muted">Không có dữ liệu!</span>
+                        </div>
+                    }
+                </div>
+                <div class="div_btn_slide_product">
+                    <button class="prev-btn_agriculture">  <i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn_agriculture"> <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center"><a href="javascript:void(0)" onclick="RedirectToAgricultural(this)" id="btn_all_agriculture" data-url="nong-nghiep">Xem thêm</a></div>
+    </div>
+</section> 

@@ -1,0 +1,78 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var listSeaFood = ViewBag.CategorySeafood as List<M_Category>;
+    //var data = ViewBag.Category as List<M_Category>;
+    //var listSeaFood = data?.FirstOrDefault(x => x.categoryCode == CommonConstants.CATEGORYCODE_SEAFOOD)?.menuChildSecondObjs;
+    
+}
+<section class="product-section-3 div_imgS" data-id="@CommonConstants.PRODUCT_SEAFOOD" id="div_product_seafood_js">
+    <div class="container-fluid-lg">
+        <div class="title">
+            <h2>SẢN PHẨM THỦY SẢN</h2>
+        </div>
+        <div class="title title-flex-2">
+            
+            <ul class="nav nav-tabs scroll_nav_css tab-style-color-2 tab-style-color" id="myTab">
+                @if (listSeaFood != null && listSeaFood.Any())
+                {
+                    <li class="nav-item">
+                        <button value="" data-url="thuy-san" onclick="OnchangeListProdutHotSeaFood(this, event)" class="nav-link btn active btn_category_product_seafood text-uppercase">
+                            Tất cả
+                        </button>
+                    </li>
+                    for (int i = 0; i < listSeaFood.Count; i++)
+                    {
+                        <li class="nav-item">
+                            <button value="@listSeaFood[i].id" onclick="OnchangeListProdutHotSeaFood(this, event)" data-url="@listSeaFood[i].metaUrl" class="nav-link btn btn_category_product_seafood text-uppercase">
+                                @listSeaFood[i].name
+                            </button>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!--arrow-slider -->
+                <div class="arrow-slider product-wrapper" id="div_product_seafood">
+                   @* <div style="height:100% !important">
+                        <div style="padding: 0" class="product-slider product-box-4 wow fadeInUp div_product_item">
+                            <div class="product-image-2 div_img_product_item p-1 hover_fly">
+                                <a href="">
+                                    <img style="object-fit: cover;margin: unset !important" src="/img_dev/anh1.jpg"
+                                         class="img-fluid blur-up lazyload p-2 h-100 w-100" alt=""
+                                         onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                                </a>
+                            </div>
+                            <div class="product-slider-detail">
+                                <div>
+                                    <div class="blog-label">
+                                        <span class="time"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span>123424</span></span>
+
+                                    </div>
+                                    <a href="" data-bs-toggle="tooltip" data-bs-placement="right" title="" class="d-block">
+                                        <span class="mt-3 text-title name_clamp knowledge_detail_titile_item">gdhj</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    @if (listSeaFood != null)
+                    {
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="w-auto d-flex m-auto" src="/img_dev/error/datanull.jpg" style="width:80px; height:80px;">
+                            <span class="text-muted">Không có dữ liệu!</span>
+                        </div>
+                    }
+                </div>
+
+                <div class="div_btn_slide_product">
+                    <button class="prev_btn_seafood"> <i class="fas fa-chevron-left"></i></button>
+                    <button class="next_btn_seafood"> <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row text-center"><a href="javascript:void(0)" onclick="RedirectToSeafood(this)" id="btn_seafood" data-url="">Xem thêm</a></div>
+    </div>
+</section>

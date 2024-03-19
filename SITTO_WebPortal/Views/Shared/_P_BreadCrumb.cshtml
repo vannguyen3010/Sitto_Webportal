@@ -1,0 +1,122 @@
+﻿@model VM_BreadCrumb
+@*<script>
+    var currentName = "@Model.currentName";
+    var truncatedName = currentName.length > 50 ? currentName.substring(0, 50) + "..." : currentName;
+    document.getElementById("breadcrumb-item").innerText = truncatedName;
+</script>*@
+@if (Model != null)
+{
+    <section class="breadscrumb-section pt-0 breadcrumb_active_div breadcrumb_background">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain breadcrumb">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        <i class="fa-solid fa-house text-white"></i>
+                                    </a>
+                                </li>
+
+                                @if (!string.IsNullOrEmpty(Model.lv1Name))
+                                {
+                                    <li class="breadcrumb-item">
+                                        <a class="text-white breadcrumb_font" href="@Model.lv1Url">
+                                            @(Model.lv1Name.Length > 50 ? Model.lv1Name.Substring(0, 50) + "..." : Model.lv1Name)
+                                        </a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.lv2Name))
+                                {
+                                    <li class="breadcrumb-item">
+                                        <a class="text-white breadcrumb_font" href="@Model.lv2Url">
+                                            @(Model.lv2Name.Length > 50 ? Model.lv2Name.Substring(0, 50) + "..." : Model.lv2Name)
+                                        </a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.lv3Name))
+                                {
+                                    <li class="breadcrumb-item">
+                                        <a class="text-white breadcrumb_font" href="@Model.lv3Url">
+                                            @(Model.lv3Name.Length > 50 ? Model.lv3Name.Substring(0, 50) + "..." : Model.lv3Name)
+                                        </a>
+                                    </li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.lv4Name))
+                                {
+                                    <li class="breadcrumb-item">
+                                        <a class="text-white breadcrumb_font" href="@Model.lv3Url">
+                                            @(Model.lv4Name.Length > 50 ? Model.lv4Name.Substring(0, 50) + "..." : Model.lv4Name)
+                                        </a>
+                                    </li>
+                                }
+                                <li style="color: #88d5f1;" class="breadcrumb-item active breadcrumb_font" aria-current="page"> @(Model.currentName?.Length > 50 ? Model.currentName.Substring(0, 50) + "..." : Model.currentName)</li>
+                               @* <li id="breadcrumb-item" style="color: var(--theme-color);font-size: 16px" class="breadcrumb-item active" aria-current="page"></li>*@
+                           </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="/">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<style>
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .breadcrumb-item {
+        display: flex;
+        align-items: center;
+        margin-right: 5px;
+    }
+
+        .breadcrumb-item:last-child {
+            font-weight: bold;
+        }
+
+        .breadcrumb-item a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+            .breadcrumb-item a:hover {
+                color: #666;
+            }
+
+        .breadcrumb-item::after {
+            /*content: "›";*/
+            margin-left: 5px;
+            color: #999;
+        }
+
+</style>

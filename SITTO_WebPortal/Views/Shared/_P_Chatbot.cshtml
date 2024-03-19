@@ -1,0 +1,179 @@
+﻿@section Styles {
+    <link href="~/assets/lib/ladda/ladda-themeless.min.css" rel="stylesheet" />
+}
+@section Scripts{
+
+    <script src="~/assets/lib/ladda/spin.min.js"></script>
+    <script src="~/assets/lib/ladda/ladda.min.js"></script>
+    <script src="~/assets/lib/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+
+}
+
+<div id="chat-box" class="chat_box">
+    <input type="hidden" id="input_id_current" />
+    <input type="hidden" id="input_id_current_1" />
+    <div class="chat_top_css d-flex">
+        <div style="position: relative;width: 18px;">
+            <a id="clear_chat" class="prev_icon_chat_bot">
+
+            </a>
+        </div>
+        <div style="height: 50px;width: 50px" class="mx-4">
+            <div class="chat_bot_img_avatar w-100">
+                <img style="border-radius: 50%" class="w-100" src="/img_dev/logo_chatbot_sitto.png" alt="" />
+            </div>
+        </div>
+        <span class="chat_top_right" id='chat-top-right'>
+            <i id='close-box' class="fas pt-1 fa-window-minimize"></i>
+        </span>
+    </div>
+    <div class="chat_msg_css">
+        <div class="chat_msg_css_item_css">
+            <div class="title_name_css">
+               @* <strong class="clamp_name_chat_css pt-3">
+                    Trò chuyện với Sitto Việt Nam
+                </strong>*@
+                <div>
+                    <div class="icon_chat_bot_sitto">
+                        <img class="w-100 h-100" src="/img_dev/logo_chatbot_sitto.png" alt=""/>
+                    </div>
+                    <div class="chat_bot_text">
+                        <span class="chat_bot_text_custom_item">Xin chào Anh/Chị. Em là trợ lý ảo của Sitto Việt Nam. Em có thể hỗ trợ Anh/Chị giải đáp các dịch vụ nào dưới đây:</span>
+                    </div>
+                    <div>
+                        <div style="margin-top: -11px;" id="div_question_js">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <div style="overflow-x: auto" id="productDetails" class="arrow-slider img-slider w-100 d-flex">
+                        @*<div class="mx-2">
+                        <div style="width: 150px" class="product-box-4 wow fadeInUp">
+                        <div class="product-image product-image-2">
+                        <a href="product-left-thumbnail.html">
+                        <img src="../assets/images/grocery/product/breakfast/1.png"
+                        class="img-fluid blur-up lazyload" alt="">
+                        </a>
+                        </div>
+
+                        <div class="product-detail">
+                        <a href="product-left-thumbnail.html">
+                        <h5 class="name text-title">Bell pepper</h5>
+                        </a>
+                        </div>
+                        </div>
+                        </div>*@
+
+                    </div>
+                    <div id="div_href_js" class="row text-center p-3 mt-2">
+                        @* <a href="/san-pham?type=1">Xem thêm</a>*@
+                    </div>
+                  
+                    @*  <div class="dot-container">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="dot dot-3"></div>
+                    </div>*@
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+    <div id="btn_chat_bot_css_item" class="btn_chat_bot_css_item mt-2">
+      @*  <button id="btn_start_chat" type="submit" class="btn text-white mt-2 mx-auto btn-md fw-bold ms-auto ladda-button btn_start_chat" data-style="expand-right">
+            <span class="ladda-label">
+                Bắt đầu chat
+            </span><span class="ladda-spinner"></span>
+        </button>*@
+        <div style="padding: 0 4px" class="w-100">
+            <button id="open-messenger" type="submit" class="btn text-white mt-2 w-100 mx-auto btn-md fw-bold ms-auto ladda-button btn_start_chat" data-style="expand-right">
+                <span class="ladda-label">
+                    Chat trực tiếp với nhân viên
+                </span><span class="ladda-spinner"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="chat_whats_css phone_icon_ring_ring_chat" @*id='whats-chat'*@>
+    <div class="coccoc-alo-phone coccoc-alo-green coccoc-alo-show">
+        <div class="coccoc-alo-ph-circle"></div>
+         <div class="coccoc-alo-ph-circle-fill"></div>
+        <div class="coccoc-alo-ph-img-circle_chat">
+            <img id='whats-chat' style="border-radius: 50%" class="w-100 h-100" src="/img_dev/logo_chat_trang.png" alt="" />
+           
+        </div>
+    </div>
+    <div id="hidden-content" class="div_chat_text">
+        <div>
+          @*  <a style="float: right"><i class="fas fa-times"></i></a>*@
+            <div class="b24-widget-button-popup-name">
+                Trợ lý ảo SITTO - VIET NAM
+            </div>
+            <div>
+                Bạn cần trợ giúp? Chúng tôi luôn sẵn sàng hỗ trợ
+            </div>
+        </div>
+    <div class="b24-widget-button-popup-triangle" style="border-color: #00AEEF;"></div>
+    </div>
+</div>
+
+<style>
+   
+</style>
+<script>
+    setTimeout(function () {
+        var openMessenger = document.getElementById("btn_chat_bot_css_item");
+        openMessenger.style.display = "block"; // Ẩn phần tử
+    }, 8000);
+
+    //document.addEventListener("DOMContentLoaded", function (){
+    //    const hiddenContent = document.getElementById("hidden-content");
+    //    const closeButton = document.getElementById("close_js");
+    //    const closeForm = document.getElementById("whats-chat");
+    //    // Hiển thị nội dung khi trang được tải
+    //    hiddenContent.style.display = "block";
+     
+    //})
+
+    var chatBoxBtn = document.getElementById('whats-chat');
+    var formChatBot = document.getElementById('chat-box');
+    var formContent = document.getElementById('hidden-content');
+    chatBoxBtn.addEventListener('click', function () {
+        // Hiển thị nút Messenger Chat Plugin khi nút được nhấp
+        formChatBot.style.display = 'block';
+        //formContent.style.display = 'none';
+
+    });
+    document.getElementById('whats-chat').addEventListener("click", showchatbox);
+    document.getElementById('chat-top-right').addEventListener("click", closechatbox);
+    //window.addEventListener("load", showchatboxtime);
+
+    function showchatbox() {
+        if (window.innerWidth > 800) {
+            document.getElementById('chat-box').style.right = '1%'
+        } else {
+            document.getElementById('chat-box').style.right = '0%'
+        }
+    }
+    function closechatbox() {
+        document.getElementById('chat-box').style.right = '-800px'
+
+    }
+    function showchatboxtime() {
+        setTimeout(launchbox, 5000)
+    }
+    function launchbox() {
+        document.getElementById('chat-box').style.right = '0%'
+    }
+
+</script>

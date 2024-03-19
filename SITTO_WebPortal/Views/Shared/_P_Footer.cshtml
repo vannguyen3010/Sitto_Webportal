@@ -1,0 +1,170 @@
+﻿@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+}
+
+
+<!-- Footer Section Start -->
+<footer class="section-t-space team-section bg-white" style="padding-top: unset !important">
+    <div class="container-fluid-lg background_footer">
+
+        <div style="padding-bottom: unset !important;padding-top: 12px !important" class="main-footer section-b-space section-t-space">
+            <div class="row g-md-4 g-3 pt-4">
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5 footer_img" >
+                    @*  <div class="footer-title d-flex">
+                    <i class="fas fa-chevron-down mx-4 d-block d-md-none"></i>
+                    </div>*@
+                    
+
+                    <div class="footer-contain d-block">
+                        <div class="theme-logo footer_img_logo">
+                            <div class="footer-title d-flex py-2">
+                                <h5 class="widget_title d-none">DANH MỤC</h5>
+                                <i class="fas fa-chevron-down mx-4 d-block d-md-none"></i>
+                            </div>
+                            <a href="/">
+                                <img src="@(!string.IsNullOrEmpty(supplierInfo.imageLogoCom) ?supplierInfo.imageLogoCom : "/img_dev/error/avatar.png")" class="blur-up lazyload w-100 h-100" alt="@supplierInfo.name"
+                                     onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-sm-12">
+                    <div class="footer-logo">
+                        @*<div class="theme-logo">
+                            <a href="/" style="height: 110px;width: 110px">
+                                <img src="@(!string.IsNullOrEmpty(supplierInfo?.imageObj?.smallUrl) ? supplierInfo?.imageObj?.smallUrl : "/img_dev/error/avatar.png")" class="blur-up lazyload w-100 h-100" alt="@supplierInfo.name"
+                                     onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';">
+                            </a>
+                        </div>*@
+
+                        <div class="footer-logo-contain">
+
+                            <p class="text-white">
+                                @supplierInfo.name
+                            </p>
+                            <ul class="address">
+                                <li style='@(string.IsNullOrEmpty(supplierInfo.addressObj?.addressText) ? "display:none;" : "")'>
+                                    <i class="fa fa-map-pin bg_icon"></i>
+                                    <a href="javascript:void(0)" class="text-white font_size_all_page">Trụ sở chính: @supplierInfo.addressObj?.addressText</a>
+                                </li>
+                                <li style='@(string.IsNullOrEmpty(supplierInfo.telephoneNumber) || string.IsNullOrEmpty(supplierInfo.fax) ? "display:none;" : "")'>
+                                    <i class="fa-solid fa-phone bg_icon"></i>
+                                    <a href="tel: @supplierInfo.supplierOfficeObj?.telephoneNumber" class="text-white font_size_all_page">ĐT: @supplierInfo.telephoneNumber - Fax: @supplierInfo.fax</a>
+                                </li>
+
+                                <li style='@(string.IsNullOrEmpty(supplierInfo.supplierOfficeObj?.title) || string.IsNullOrEmpty(@supplierInfo.supplierOfficeObj?.addressText) ? "display:none;" : "")'>
+                                    <i class="fa-solid fa-house bg_icon"></i>
+                                    <a href="javascript:void(0)" class="text-white font_size_all_page">@supplierInfo.supplierOfficeObj?.title: @supplierInfo.supplierOfficeObj?.addressText</a>
+                                </li>
+                                <li style='@(string.IsNullOrEmpty(supplierInfo.supplierOfficeObj?.telephoneNumber) || string.IsNullOrEmpty(supplierInfo.fax) ? "display:none;" : "")'>
+                                    <i class="fa-solid fa-phone bg_icon"></i>
+                                    <a href="tel: @supplierInfo.supplierOfficeObj?.telephoneNumber" class="text-white font_size_all_page">
+                                        ĐT: @supplierInfo.supplierOfficeObj?.telephoneNumber - Fax: @supplierInfo.fax
+                                    </a>
+                                </li>
+                                <li style='@(string.IsNullOrEmpty(supplierInfo.email) ? "display:none;" : "")'>
+                                    <i class="fa fa-envelope bg_icon py-1"></i>
+                                    <a href="mailto: @supplierInfo.email" class="text-white font_size_all_page">
+                                        @supplierInfo.email
+                                    </a>
+                                </li>
+                                <li style='@(string.IsNullOrEmpty(supplierInfo.businessNumber) ? "display:none;" : "")'>
+                                    <a href="javascript:void(0)" class="text-white font_size_all_page mx-4">
+                                        @supplierInfo.businessNumber
+                                    </a>
+                                </li>
+
+                            </ul>
+                           @* <div class="team-box">
+                                <div class="team-name">
+                                    <ul class="team-media" style="float: left">
+                                        <li style='@(string.IsNullOrEmpty(supplierInfo.faceBook) ? "display:none;" : "")'>
+                                            <a target="_blank" href="@supplierInfo.faceBook" class="fb-bg">
+                                                <i class="fa-brands fa-facebook-f"></i>
+                                            </a>
+                                        </li>
+
+                                        <li style='@(string.IsNullOrEmpty(supplierInfo.youtube) ? "display:none;" : "")'>
+                                            <a target="_blank" href="@supplierInfo.youtube" class="pint-bg">
+                                                <i class="fab fa-youtube" style="color: #c52020;"></i>
+                                            </a>
+                                        </li>
+
+
+                                        <li style='@(string.IsNullOrEmpty(supplierInfo.zalo) ? "display:none;" : "")'>
+                                            <a target="_blank" href="@supplierInfo.zalo" class="insta-bg">
+                                                <img src="/img_dev/zalo_icon.png" class="w-100 h-100" style="color: blue;" alt="" />
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 pt-4">
+                    <div class="footer-title d-flex">
+                        <h5 class="widget_title">DANH MỤC</h5>
+                        <i class="fas fa-chevron-down mx-4 d-block d-md-none"></i>
+                    </div>
+
+                    <div class="footer-contain">
+                        <ul>
+                            <li>
+                                <a href="/ve-chung-toi" class="text-white text-uppercase font_size_all_page">Về chúng tôi</a>
+                            </li>
+                            <li>
+                                <a href="/san-pham" class="text-white text-uppercase font_size_all_page">Sản phẩm</a>
+                            </li>
+                            <li>
+                                <a href="/kien-thuc" class="text-white text-uppercase font_size_all_page">Trung tâm kiến thức</a>
+                            </li>
+                            <li>
+                                <a href="/lien-he" class="text-white text-uppercase font_size_all_page">Hỗ trợ khách hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-3 col-sm-5">
+                  @*  <div class="footer-title d-flex">
+                        <i class="fas fa-chevron-down mx-4 d-block d-md-none"></i>
+                    </div>
+*@
+                    <div class="footer-contain d-block">
+                        <ul>
+                            <li>    
+                                <a href="http://online.gov.vn/Home/WebDetails/88883?AspxAutoDetectCookieSupport=0" target="_blank" class="text-white text-uppercase">
+                                    <img src="/img_dev/chungnhan.png" class="blur-up lazyload w-100" alt="" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://sittovietnam.vn/pdf/policy/20211020_Dieu_khoan_su_dung_SITTOVIETNAM.VN.pdf" target="_blank" class="text-white text-uppercase font_size_all_page">ĐIỀU KHOẢN SỬ DỤNG</a>
+                            </li>
+                            <li>
+                                <a href="https://sittovietnam.vn/pdf/policy/20211020_Chinh_sach_bao_mat_SITTOVIETNAM.VN.pdf" target="_blank" class="text-white text-uppercase font_size_all_page">CHÍNH SÁCH BẢO MẬT</a>
+                            </li>
+                            <li>
+                                <a href="https://sittovietnam.vn/pdf/policy/20211020_Quy_che_hoat_dong_SITTOVIETNAM.VN.pdf" target="_blank" class="text-white text-uppercase font_size_all_page">QUY CHẾ HOẠT ĐỘNG</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-footer section-small-space" style="padding: 10px 0">
+            <div class="reserve">
+                @* <h6 class="text-content">©2022 Fastkart All rights reserved</h6>*@
+            </div>
+
+            <div class="payment">
+              @*  <h5 class="text-white">©<a class="text-white" style="text-decoration: underline" href="https://h2aits.com/" target="_blank">H2A IT Solution</a>. All rights reserved.</h5>*@
+                <h5 style="font-size: 15px" class="text-white text-uppercase">© Bản quyền 2023 thuộc về Sitto Việt Nam | <a class="text-white text-uppercase" style="text-decoration: underline" href="https://h2aits.com/" target="_blank">Phát triển bởi CÔNG TY CPGP CÔNG NGHỆ H2A VIỆT NAM</a>.</h5>
+            </div>
+
+            <div class="social-link">
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->

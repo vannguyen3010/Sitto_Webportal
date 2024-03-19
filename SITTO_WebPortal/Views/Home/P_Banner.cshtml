@@ -1,0 +1,35 @@
+﻿@{
+    var data = ViewBag.BannerTop as List<M_Banner>;
+}
+
+@if (data != null && data.Any())
+{
+    <div class="home-section-2 home-section-bg pt-0 overflow-hidden div_css_custom_hei div_hei_banner">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="slider_banner_header_top arrow-slider product-wrapper">
+                        @foreach (var item in data)
+                        {
+                        <div>
+                            <div class="home-contain rounded-0 p-0 div_mobile_res_banner_header">
+                                    <img src="@(string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? "/img_dev/error/product.png" : item.imageObj?.relativeUrl)"
+                                     class="img-fluid bg-img blur-up lazyload" style="width: auto;max-width: 100%;height: 500px" alt="@item.title"
+                                     onerror="this.onerror=null;this.src='/img_dev/error/product.png';" />
+
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+
+                    <div class="div_btn_slide">
+                        <button class="prev-btn">  <i class="fas fa-chevron-left fs-3"></i></button>
+                        <button class="next-btn"> <i class="fas fa-chevron-right fs-3"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

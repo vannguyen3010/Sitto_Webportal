@@ -1,0 +1,84 @@
+﻿@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noodp,noydir,index,follow" />
+    <meta name="description" content="@ViewData["Description"]">
+    <meta name="keywords" content="@ViewData["Keywords"]">
+    <meta name="author" content="@supplierInfo.name">
+    <title>@ViewData["Title"] @ViewData["Slogan"]</title>
+    @*<link rel="shortcut icon" href="@supplierInfo.imageFavicon">*@
+    <link rel="shortcut icon" href="@(!string.IsNullOrEmpty(supplierInfo.imageFaviconCom) ? supplierInfo.imageFaviconCom : "/img_dev/error/Favicon.png")">
+
+
+    <!-- Facebook, Zalo, Telegram Meta Tags -->
+    <meta property="og:image" content="@ViewData["ImagePreview"]" />
+    <meta property="og:image:alt" content="@ViewData["Title"]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi" />
+    <meta property="og:url" content="@Context.Request.Host" /> 
+    <meta property="og:site_name" content="@supplierInfo.name" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="@ViewData["ImagePreview"]" />
+    <meta name="twitter:title" content="@ViewData["Title"]" />
+    <meta name="twitter:description" content="@ViewData["Description"]" />
+
+    <partial name="_P_Styles" />
+    @*@await RenderSectionAsync(name: "Styles", required: false)*@
+    @RenderSection("Styles", required: false)
+    <style>
+        :root {
+            --theme-color: @(!string.IsNullOrEmpty(supplierInfo.themeColorFirst) ? supplierInfo.themeColorFirst : "#00abe9");
+            --first-Color: @(!string.IsNullOrEmpty(supplierInfo.themeColorFirst) ? supplierInfo.themeColorFirst : "#00abe9");
+            --second-Color: @(!string.IsNullOrEmpty(supplierInfo.themeColorSecond) ? supplierInfo.themeColorSecond : "#00abe9");
+        }
+
+    </style>
+    <link href="~/css/all_page.css" rel="stylesheet" asp-append-version="true" />
+    <link href="/css/response.css" rel="stylesheet" asp-append-version="true" />
+
+</head>
+<body class="dark" id="div_body">
+    <partial name="_P_Loader" />
+    <partial name="_P_Header" />
+    @RenderBody()
+    <partial name="_P_Footer" />
+    <partial name="_P_Chatbot"  />
+    <div class="theme-option phone_icon_ring_ring">
+        <div class="wrapper">
+            <div class="ring">
+                <div class="coccoc-alo-phone coccoc-alo-green coccoc-alo-show">
+                    <a href="tel:@supplierInfo.hotlineNumber">
+                        @*<div class="coccoc-alo-ph-circle"></div>*@
+                        <div class="coccoc-alo-ph-circle-fill_icon"></div>
+                        <div style="height: 50px;width: 50px" class="coccoc-alo-ph-img-circle">
+                            <img id='whats-chat' class="w-100 h-100" src="/img_dev/logo_phone.png" alt="" />
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="theme-option theme_option_item">
+        <div class="back-to-top" style="background: var(--theme-color) !important">
+            <a id="back-to-top" href="#">
+                <i class="fas fa-chevron-up"></i>
+            </a>
+        </div>
+    </div>
+    <div class="bg-overlay"></div>
+    <partial name="_P_Script" />
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

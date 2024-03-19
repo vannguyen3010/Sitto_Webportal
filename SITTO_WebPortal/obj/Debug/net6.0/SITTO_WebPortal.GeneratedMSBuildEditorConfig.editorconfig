@@ -1,0 +1,181 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SITTO_WebPortal
+build_property.RootNamespace = SITTO_WebPortal
+build_property.ProjectDir = F:\dotnet.core\Working\SittoCom_WebPortal\SITTO_WebPortal\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = F:\dotnet.core\Working\SittoCom_WebPortal\SITTO_WebPortal
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/AboutUs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRVc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/AboutUs/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRVc1xWaWV3RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Contact/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Error/400.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcNDAwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Error/404.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcNDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Error/408.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcNDA4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Error/500.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcNTAwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Error/503.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcNTAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Error/ExpiredDomain.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcRXhwaXJlZERvbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_AboutUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX0Fib3V0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_Banner.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX0Jhbm5lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_ListNew.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX0xpc3ROZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_Popup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1BvcHVwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_SlideKnowledge_NN.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1NsaWRlS25vd2xlZGdlX05OLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_SlideKnowledge_TS.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1NsaWRlS25vd2xlZGdlX1RTLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_SlideProduct_NN.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1NsaWRlUHJvZHVjdF9OTi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_SlideProduct_TS.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1NsaWRlUHJvZHVjdF9UUy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_SlideSupport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1NsaWRlU3VwcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Home/P_SlideTools.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQX1NsaWRlVG9vbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Info/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5mb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Knowledge/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS25vd2xlZGdlXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Knowledge/IndexAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS25vd2xlZGdlXEluZGV4QWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Knowledge/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS25vd2xlZGdlXFZpZXdEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Product/IndexAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleEFsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Product/ViewDetail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxWaWV3RGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Search/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhcmNoXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_LayoutError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_BreadCrumb.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX0JyZWFkQ3J1bWIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_Chatbot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX0NoYXRib3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX0Zvb3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX0hlYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_Loader.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX0xvYWRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_Script.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX1NjcmlwdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_P_Styles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9QX1N0eWxlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/dotnet.core/Working/SittoCom_WebPortal/SITTO_WebPortal/Views/Shared/_LayoutMaster.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRNYXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-oee5ur3ac8

@@ -1,0 +1,439 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+    var bannerTop = ViewBag.AboutBannerTop as List<M_Banner>;
+    var bannerMid = ViewBag.AboutBannerMid as List<M_Banner>;
+    var bannerBottom = ViewBag.AboutBannerBottom as List<M_Banner>;
+}
+
+@section styles{
+    <link href="~/css/info.css" rel="stylesheet" asp-append-version="true" />
+}
+@section scripts{
+    <script src="~/controllers/info.js" asp-append-version="true"></script>
+}
+
+
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+@*<section class="home-section-2 home-section-bg pt-0 overflow-hidden mt-4">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12">
+                <div class="slider_banner_header_top product-wrapper">
+                    @if (bannerTop != null && bannerTop.Any())
+                    {
+                        foreach (var item in bannerTop)
+                        {
+                            <div>
+                                <div class="home-contain rounded-0 p-0" style="height: 600px;">
+                                    <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)"
+                                         class="img-fluid bg-img blur-up lazyload h-100" alt="@item.title"
+                                         onerror="this.onerror=null;this.src='/img_dev/error/product.png';" />
+                                    <div class="home-detail home-big-space p-center-left home-overlay position-relative">
+                                        <div class="container-fluid-lg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                </div>
+
+                <div class="div_btn_slide">
+                    <button class="prev-btn">  <i class="fas fa-chevron-left"></i></button>
+                    <button class="next-btn"> <i class="fas fa-chevron-right"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>*@
+@if (bannerTop != null && bannerTop.Any())
+{
+    <section class="home-section-2 home-section-bg pt-0 overflow-hidden mt-1 info_div_instro">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="slider_banner_header_info arrow-slider product-wrapper">
+
+                        @foreach (var item in bannerTop)
+                        {
+                        <div>
+                            <div class="home-contain rounded-0 p-0 div_mobile_res_banner_header">
+                                    <img src="@(string.IsNullOrEmpty(item.imageObj?.relativeUrl) ? "/img_dev/error/product.png" : item.imageObj?.relativeUrl)"
+                                     class="img-fluid bg-img blur-up lazyload w-100" alt="@item.title"
+                                     onerror="this.onerror=null;this.src='/img_dev/error/product.png';" />
+
+                            </div>
+                        </div>
+                        }
+
+                    </div>
+
+                    <div class="div_btn_slide_info">
+                        <button class="prev-btn_info">  <i class="fas fa-chevron-left fs-3"></i></button>
+                        <button class="next-btn_info"> <i class="fas fa-chevron-right fs-3"></i></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+<div class="client-section section-lg-space mt-4 py-4 animation">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="about-us-title text-center">
+                    <h2>VỀ CHÚNG TÔI</h2>
+                    <h2 class="center">SITTO VIỆT NAM - MANG ĐẾN CHẤT LƯỢNG VÀ SỰ TẬN TÂM</h2>
+                </div>
+
+                <div class="slider-3_1 product-wrapper">
+                    <div>
+                        <div class="clint-contain">
+                            <!-- <div class="client-icon">
+                                <img src="../assets/svg/3/work.svg" class="blur-up lazyload" alt="">
+                            </div> -->
+                            <h4>TẦM NHÌN</h4>
+                            <p>SITTO phấn đấu trở thành biểu tượng niềm tin hàng đầu của người nông dân Việt nam về các sản phẩm phục vụ sản xuất nông nghiệp, không chỉ cho thế hệ hôm nay và cho cả mai sau. Do vậy SITTO cam kết cung cấp các sản phẩm và dịch vụ với giá trị và chất lượng THƯỢNG HẠNG.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="clint-contain">
+                            <!-- <div class="client-icon">
+                                <img src="../assets/svg/3/buy.svg" class="blur-up lazyload" alt="">
+                            </div> -->
+                            <h4>SỨ MỆNH</h4>
+                            <p>Giúp bà con nông dân sản xuất ra những sản phẩm nông nghiệp có chất lượng thượng hạng với năng suất cao, mang lại giá trị gia tăng vượt bậc, cải thiện thu nhập & đời sống của bà con nông dân. Và ngược lại, bà con nông dân sẽ tưởng thưởng cho SITTO về doanh số, về lợi nhuận, và cao hơn cả đó là niềm tin vào thương hiệu SITTO đã mang đến cho bà con nông dân những sản phẩm có chất lượng với sự phục vụ tận tâm.</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="clint-contain">
+                            <!-- <div class="client-icon">
+                                <img src="../assets/svg/3/user.svg" class="blur-up lazyload" alt="">
+                            </div> -->
+                            <h4>GIÁ TRỊ CỐT LÕI</h4>
+                            <p>Các giá trị cốt lõi của SITTO là kim chỉ nam, là nền tảng định hướng cho mọi hoạt động của tổ chức. Các giá trị cơ bản này cũng là nguồn cảm hứng cho mọi hoạt động của SITTO, và thúc giục toàn thể CBCNV SITTO cống hiến những điều tốt đẹp mỗi ngày.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="banner-section animation">
+    <div class="container-fluid-lg">
+        <div class="row gy-lg-0 gy-3">
+            <div class="col-lg-12 col-xl-6">
+                <div class="banner-contain-3 slider_banner_header_info pt-5 hover-effect div_banner_item">
+                    @if (bannerMid != null && bannerMid.Any())
+                    {
+                        foreach (var item in bannerMid)
+                        {
+                            <div class="banner_top_css_item banner_top_css ">
+                                <div class="h-100">
+                                    <img style="border-radius: 5px;" src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)"
+                                         class="img-fluid social-image blur-up lazyload w-100" alt="@item.title"
+                                         onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="">
+                            <div class="banner_top_css_item">
+                                <img src="/img_dev/error/product.png"
+                                     class="img-fluid social-image blur-up lazyload w-100" alt="">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-6">
+                <div class="banner-contain-3 h-100 hover-effect">
+                    <div class="banner-detail banner-p-sm p-center-right position-relative banner-minus-position banner-detail-deliver">
+                        <div class="pt-3">
+                            <div class="title w-100">
+                                <div class="text-center">
+                                    <h2 class="title_css_info">Sitto Group</h2>
+                                    <span class="title-leaf">
+                                        <svg class="icon-width backgr_svg1">
+                                            <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <span class="mb-sm-3 mb-2 delivery-contain title_text_info text-black">
+                                Tập đoàn SITTO Thái Lan (SITTO GROUP) do ông San Booncharoen và bà Ladawan sáng lập năm 1985, là tập đoàn chuyên sản xuất và kinh doanh thuốc thú y thủy sản, phân bón, thuốc bảo vệ thực vật. Với trên 20 năm kinh nghiệm tập đoàn SITTO đã nhanh chóng trở thành tập đoàn hàng đầu trên thế giới trong lĩnh vực nghiêu cứu, phát triển sản phẩm nuôi tôm công nghiệp, phân bón và thuốc BVTV...
+                            </span>
+                            <div class="row text-center p-3 mt-2 buton_info"><a href="javascript:void(0)">Xem thêm</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="banner-section div_img div_section_info">
+    <div class="container-fluid-lg">
+        <div class="row gy-lg-0 gy-3">
+            <div class="col-lg-12 col-xl-6">
+                <div class="banner-contain-3 h-100 hover-effect">
+                    <div class="banner-detail banner-p-sm p-center-right position-relative banner-minus-position banner-detail-deliver">
+                        <div class="pt-3">
+                            <div class="title w-100">
+                                <div class="text-center">
+                                    <h2 class="title_css_info">Sitto Việt Nam</h2>
+                                    <span class="title-leaf">
+                                        <svg class="icon-width backgr_svg backgr_svg">
+                                            <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <span class="mb-sm-3 mb-2 delivery-contain title_text_info text-black">
+                                Trên 20 năm có mặt tại thị trường Việt Nam, thương hiệu SITTO với hình ảnh “Con Cá Ngựa” đã không ngừng lớn mạnh và từng bước khẳng định vị thế của mình. Đã trở nên quen thuộc, thân thiết và gần gũi với khách hàng, với bà con nông dân Việt Nam.
+                            </span>
+                            <div class="row text-center p-3 mt-2 buton_info"><a href="javascript:void(0)">Xem thêm</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-6">
+                <div class="banner-contain-3 slider_banner_header_info pt-lg-4 hover-effect div_banner_item">
+                    @if (bannerBottom != null && bannerBottom.Any())
+                    {
+                        foreach (var item in bannerBottom)
+                        {
+                            <div class="banner_top_css_item banner_top_css">
+                                <div class="h-100">
+                                    <img style="border-radius: 5px;" src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)"
+                                         class="img-fluid social-image blur-up lazyload w-100" alt="@item.title"
+                                         onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="">
+                            <div class="banner_top_css_item">
+                                <img src="/img_dev/error/product.png"
+                                     class="img-fluid social-image blur-up lazyload w-100" alt="">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Faq Question section Start -->
+<section class="faq-contain animation">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="slider-4-2 product-wrapper">
+                    <div class="faq_box_css">
+                        <div class="faq-top-box h-100">
+                            <div class="faq-box-icon">
+                                <i class="fa-solid fa-s" style="color: var(--theme-color);font-size: 40px;"></i>
+                            </div>
+
+                            <div class="faq-box-contain">
+                                <h3>SUPPORT</h3>
+                                <p style="margin: 40px;">
+                                    Hỗ trợ lẫn nhau
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq_box_css">
+                        <div class="faq-top-box h-100">
+                            <div class="faq-box-icon">
+                                <i class="fa-solid fa-i" style="color: var(--theme-color);font-size: 40px;"></i>
+                            </div>
+
+                            <div class="faq-box-contain">
+                                <h3>INTEGRITY</h3>
+                                <p style="margin: 40px;">Trung thực</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq_box_css">
+                        <div class="faq-top-box h-100">
+                            <div class="faq-box-icon">
+                                <i class="fa-solid fa-t" style="color: var(--theme-color);font-size: 40px;"></i>
+                            </div>
+
+                            <div class="faq-box-contain">
+                                <h3>TRUST</h3>
+                                <p style="margin-top: 38px;">Tôn trọng & Tin cậy lẫn nhau</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq_box_css">
+                        <div class="faq-top-box h-100">
+                            <div class="faq-box-icon">
+                                <i class="fa-solid fa-t" style="color: var(--theme-color);font-size: 40px;"></i>
+                            </div>
+
+                            <div class="faq-box-contain">
+                                <h3>TEAM IN GREAT WORKPLACE</h3>
+                                <p>Ngôi nhà chung tuyệt vời</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq_box_css">
+                        <div class="faq-top-box h-100">
+                            <div class="faq-box-icon">
+                                <i class="fa-solid fa-o" style="color: var(--theme-color);font-size: 40px;"></i>
+                            </div>
+                            <div class="faq-box-contain">
+                                <h3>OWNERSHIP</h3>
+                                <p style="margin-top: 40px;">Tinh thần trách nhiệm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Faq Question section End -->
+<section class="team-section section-lg-space div_img animation">
+    <div class="container-fluid-lg">
+        <div class="about-us-title text-center">
+            <h2 class="center">HỖ TRỢ KHÁCH HÀNG</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="div_slide_support product-wrapper">
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="@supplierInfo.zalo">
+                                    <img src="/img_dev/logoZalo.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #0d6efd" class="text-white">ZALO</h3>
+                                <a target="_blank" href="@supplierInfo.zalo" class="font_name">
+                                    SITTO VIỆT NAM
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="@supplierInfo.youtube">
+                                    <img src="/img_dev/logoYTB.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 class="text-white bg-danger">YOUTUBE</h3>
+                                <a target="_blank" href="@supplierInfo.youtube" class="font_name">
+                                    SITTO VIỆT NAM - BẠN CỦA NHÀ NÔNG
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="https://www.facebook.com/SittoVietNam2005">
+                                    <img src="/img_dev/facebook.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #1261d4" class="text-white">FACEBOOK</h3>
+                                <a target="_blank" href="https://www.facebook.com/SittoVietNam2005" class="font_name">
+                                    SITTO VIỆT NAM
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="@supplierInfo.appUrl">
+                                    <img src="/img_dev/logoNP.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #70c91c" class="text-white notranslate">GOOGLE PLAY</h3>
+                                <a target="_blank" href="@supplierInfo.appUrl" class="font_name">
+                                    ỨNG DỤNG NÔNG PHÚ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="https://apps.apple.com/vn/app/n%C3%B4ng-ph%C3%BA/id1287818729?l">
+                                    <img src="/img_dev/logoNP.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #70c91c" class="text-white notranslate">APP STORE</h3>
+                                <a target="_blank" href="@supplierInfo.appUrl" class="font_name">
+                                    ỨNG DỤNG NÔNG PHÚ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .animate-zoomIn {
+        animation-name: zoomIn;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-timing-function: ease-out;
+    }
+
+</style>
+<script>
+    window.addEventListener("scroll", function () {
+        const elements = document.querySelectorAll(".animation");
+
+        elements.forEach(function (element) {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementBottom = element.getBoundingClientRect().bottom;
+
+            if (elementTop < window.innerHeight && elementBottom >= 0) {
+                element.classList.add("animate-zoomIn");
+            } else {
+                element.classList.remove("animate-zoomIn");
+            }
+        });
+    });
+</script>

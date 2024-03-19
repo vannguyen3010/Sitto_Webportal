@@ -1,0 +1,118 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var data = ViewBag.ListCategory as List<M_NewCategory>;
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+}
+@section Scripts{
+    <script src="~/controllers/knowledge_all.js" asp-append-version="true"></script>
+}
+@section Styles{
+    <link href="~/css/knowledge.css" rel="stylesheet" asp-append-version="true"/>
+}
+
+<input type="hidden" id="input_categoryLv1_id" value="@ViewBag.Lv1" />
+<input type="hidden" id="input_categoryLv2_id" value="@ViewBag.Lv2" />
+<input type="hidden" id="input_category_id" value="@ViewBag.categoryId" />
+<input type="hidden" id="input_page" value="@ViewBag.page" />
+<input type="hidden" id="input_record" value="@ViewBag.record" />
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<section class="section-b-space shop-section">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="title">
+                    <h2>@ViewBag.CategoryName</h2>
+                </div>
+                <div class="title title-flex-2">
+                    <ul class="nav nav-tabs scroll_nav_css tab-style-color-2 tab-style-color" id="myTab">
+                        <li class="nav-item">
+                            <button value="@ViewBag.CategoryId" onclick="OnchangeListProdutHotAgricultural(this, event, 11, 1)" class="nav-link btn btn_tab active text-uppercase" data-bs-toggle="tab" data-bs-target="#cooking"
+                                    type="button">
+                                Tất cả
+                            </button>
+                        </li>
+                        @if (data != null && data.Any())
+                        {
+                            foreach (var item in data)
+                            {
+                                <li class="nav-item">
+                                    <button value="@item.id" id="btn_active" onclick="OnchangeListProdutHotAgricultural(this, event, @item.id)" class="nav-link btn btn_tab text-uppercase" data-bs-toggle="tab" data-bs-target="#cooking"
+                                    type="button">
+                                        @item.name
+                                    </button>
+                                </li>
+                            }
+                        }
+
+                      
+
+                    </ul>
+                </div>
+                <div id="div_main_data" class="row g-sm-4 g-3 row-cols-xxl-5 row-cols-xl-4 row-cols-lg-2 row-cols-md-3 row-cols-1 product-list-section">
+                   
+                  @*  <div>
+                        <div class="product-box-3 h-100 wow fadeInUp">
+                            <div class="">
+                                <div class="product-image">
+                                    <a href="product-left-thumbnail.html">
+                                        <img src="./assets/img_dev/sanpham2.png"
+                                             class="img-fluid blur-up lazyload" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-detail">
+                                    <span class="span-name badge bg-success text-white">Loại 1</span>
+                                    <p class="fs-5 course-info-02__category">Men vi sinh</p>
+                                    <a href="product-left-thumbnail.html">
+                                        <h5 class="name">BACILLUS SUBTILIS 1090 (Gói 500g)</h5>
+                                    </a>
+                                    <p class="text-content mt-1 mb-2 product-content">
+                                        Cheesy feet cheesy grin brie.
+                                        Mascarpone cheese and wine hard cheese the big cheese everyone loves smelly
+                                        cheese macaroni cheese croque monsieur.
+                                    </p>
+
+
+                                    </h5>
+                                    <div class="add-to-cart-box bg-white">
+                                        <a class="btn btn-add-cart addcart-button" href="/product_detail.html">
+                                            Xem thêm
+
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+                </div>
+
+                <nav class="custome-pagination">
+                    <ul id="ul_main_pagination" class="pagination justify-content-center">
+                     @*   <li class="page-item disabled">
+                            <a class="page-link" href="javascript:void(0)" tabindex="-1" aria-disabled="true">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0)">1</a>
+                        </li>
+                        <li class="page-item" aria-current="page">
+                            <a class="page-link" href="javascript:void(0)">2</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0)">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </li>*@
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,644 @@
+﻿@section Styles{
+    <link href="/css/header.css" rel="stylesheet" asp-append-version="true" />
+}
+@{
+    var data = ViewBag.Category as List<M_Category>;
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+    var aboutCategory = ViewBag.AboutCategory as List<M_NewCategory>;
+    var knowledgeCategory = ViewBag.KnowledgeCategory as List<M_NewCategory>;
+    var dataTools = ViewBag.ToolsListCategory as List<M_Utility>;
+}
+
+<!-- Header Start -->
+<header class="pb-1">
+    <div class="top-nav top-header sticky-header_mobile header_top_css">
+        <div class="container-fluid-lg ">
+            <div class="row">
+                <div class="col-12">
+                    <div class="navbar-top">
+                        <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
+                                data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                            <span class="navbar-toggler-icon">
+                                <i class="fa-solid fa-bars"></i>
+                            </span>
+                        </button>
+                        <div class="col-xxl-3 d-xl-block d-none">
+                            <div class="top-left-header">
+                                @*<i class="fa-regular fa-envelope icli text-white"></i>*@
+                                @*<span class="text-white">@supplierInfo.email</span>*@
+                                <span class="text-white">Chào mừng tới<b class="my_style mx-1">SITTO VIỆT NAM</b></span>
+                            </div>
+                        </div>
+
+                        <div class="middle-box">
+                            <div class="search-box">
+                                <div class="input-group">
+                                    <input id="input_keyword_product" type="search" class="form-control input_css" placeholder="Nhập từ khóa để tìm kiếm..."
+                                           aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <a class="btnShowSpeech btn_mic_search">
+                                        @* <i class="fas fa-microscope mic_icon_search"></i>*@
+                                        <i data-feather="mic" class="mic_icon_search"></i>
+                                    </a>
+                                    <button onclick="SubmitSearchProduct()" class="btn search_css_btn h-100" type="button" id="button-addon2">
+                                        <i data-feather="search"></i>
+                                    </button>
+
+                                </div>
+                                <div class="list-group scroll_css" id="list_product_quick_search">
+
+                                    @*       <span id="search_product">Sản phẩm</span>
+                                    <span id="search_new">tin tức</span>*@
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-3 div_stranglate_res_css">
+                            <ul class="about-list right-nav-about about_list">
+                                <li class="my-auto">
+                                    <div id="google_translate_element"></div>
+                                    <div id="translate_select" class="d-flex">
+                                        <div class="col-6 active_flag" style="padding: 3px;height: 35px;width: 40px;" data-id="vi">
+                                            <a class="btn_a child img_icon_stranlate" href="javascript:void(0)">
+                                                <img class="w-100 h-100" src="/img_dev/icon_language/vi.png" style="object-fit: contain;opacity: 0.4" />&nbsp
+                                            </a>
+                                        </div>
+                                        <div class="col-6" style="padding: 3px;height: 35px;width: 40px" data-id="en">
+                                            <a class="btn_a child" href="javascript:void(0)">
+                                                <img class="w-100 h-100" src="/img_dev/icon_language/us.png" style="object-fit: contain;opacity: 0.4" />
+                                                &nbsp
+                                            </a>
+                                        </div>
+                                        <div class="col-6 mobile_search" style="padding: 3px;height: 35px;width: 40px;">
+                                            <a id="btn_search_mobile" class="btn_a child" href="javascript:void(0)">
+                                                @* <i class="fas fa-search" style="color: #29bc55;"></i>*@
+                                                <i class="text-dark" data-feather="search"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid-lg sticky-header_desktop sticky-header bg-white ">
+        <div class="row">
+            <div class="col-12">
+                <div class="header-nav py-2">
+                    <div class="py-2 header-nav-left pt-2 logo_bg_size">
+                        <div class="header-nav-left h-100">
+                            @if (!string.IsNullOrEmpty(@supplierInfo.imageLogoCom))
+                            {
+                                <a href="/" class="web-logo nav-logo">
+                                    <img src="@(!string.IsNullOrEmpty(supplierInfo.imageLogoCom) ? supplierInfo.imageLogoCom : "/img_dev/error/avatar.png")"
+                                         class="img-fluid blur-up lazyloaded" style="height: 100%;"
+                                         onerror="this.onerror=null;this.src='/img_dev/error/avatar.png';" alt="@supplierInfo.name">
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="/" class="web-logo nav-logo">
+                                    <img src="/img_dev/error/avatar.png"
+                                         class="img-fluid blur-up lazyloaded" style="height: 120%;">
+                                </a>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="header-nav-middle team-section" style="z-index: 99">
+                        <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+                            <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                                <div class="offcanvas-header navbar-shadow">
+                                    <h2 style="color: var(--theme-color)">@supplierInfo.contactName</h2>
+                                    <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+                                    <ul class="navbar-nav">
+
+                                        <li class="nav-item dropdown header_desktop">
+                                            <a class="nav-link dropdown-toggle header_title" href="/thong-tin-cong-ty"
+                                            @*data-bs-toggle="dropdown"*@>VỀ CHÚNG TÔI <i class="fas fa-chevron-down mx-2"></i></a>
+                                            <ul class="dropdown-menu header_item">
+                                                @if (aboutCategory != null && aboutCategory.Any())
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item title_font" href="/thong-tin-cong-ty">
+                                                            Thông tin công ty
+                                                        </a>
+                                                    </li>
+                                                    foreach (var item in aboutCategory)
+                                                    {
+
+
+                                                        <li class="sub-dropdown-hover sub_div_css">
+                                                            <a class="dropdown-item title_font" href="/ve-chung-toi/@item.metaUrl">
+                                                                @item.name
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                }
+
+
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown header_mobile">
+                                            <a class="nav-link dropdown-toggle"
+                                               data-bs-toggle="dropdown">VỀ CHÚNG TÔI</a>
+                                            <ul class="dropdown-menu">
+                                                @if (aboutCategory != null && aboutCategory.Any())
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item title_font" href="/thong-tin-cong-ty">
+                                                            Thông tin công ty
+                                                        </a>
+                                                    </li>
+                                                    foreach (var item in aboutCategory)
+                                                    {
+
+
+                                                        <li class="sub-dropdown-hover sub_div_css">
+                                                            <a class="dropdown-item title_font" href="/ve-chung-toi/@item.metaUrl">
+                                                                @item.name
+                                                            </a>
+                                                        </li>
+                                                    }
+                                                }
+
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown header_desktop">
+                                            <a class="nav-link dropdown-toggle header_title" href="/san-pham">SẢN PHẨM <i class="fas fa-chevron-down mx-2"></i></a>
+
+                                            <ul class="dropdown-menu header_item">
+                                                @if (data != null && data.Any())
+                                                {
+                                                    foreach (var item in data)
+                                                    {
+                                                        <li class="sub-dropdown-hover">
+                                                            <a href="/danh-sach-san-pham/@item.metaUrl" class="dropdown-item title_font">@item.name</a>
+                                                            @if (item.menuChildSecondObjs != null && item.menuChildSecondObjs.Any())
+                                                            {
+                                                                <ul class="sub-menu header_item mt-3">
+                                                                    @foreach (var value in item.menuChildSecondObjs)
+                                                                    {
+
+                                                                        @if (value.showUi == 0)
+                                                                        {
+                                                                            @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                            {
+                                                                                foreach (var valueC3 in value.menuChilThirdObjs)
+                                                                                {
+                                                                                    <li class="nav-item dropdown mx-auto">
+
+                                                                                        <a href="/danh-sach-san-pham/@valueC3.metaUrl" style="padding: 0 0 4px;" class="nav-link dropdown-toggle title_font drop_css_lv2 disable_icon_dropdown_css disable_icon_dropdown d-flex align-items-center">
+                                                                                            <span class="flex-grow-1" style="margin-right: 10px;">@valueC3.name</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <li class="nav-item dropdown mx-auto">
+
+                                                                                <a href="/danh-sach-san-pham/@value.metaUrl" style="padding: 0 0 4px;" class="nav-link dropdown-toggle title_font drop_css_lv2 disable_icon_dropdown_css disable_icon_dropdown d-flex align-items-center">
+                                                                                    <span class="flex-grow-1" style="margin-right: 10px;">@value.name</span>
+                                                                                    @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                                    {
+                                                                                        <i class="fa-solid fa-chevron-right"></i>
+                                                                                    }
+                                                                                </a>
+
+                                                                                @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                                {
+                                                                                    @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                                    {
+                                                                                        <ul class="dropdown-menu header_item mx-4">
+                                                                                            @foreach (var value3 in value.menuChilThirdObjs)
+                                                                                            {
+                                                                                                @if (value3.showUi == 0)
+                                                                                                {
+
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    <li class="mt-2 px-3">
+                                                                                                        <a class="dropdown-item title_font text_font_header_item" href="/danh-sach-san-pham/@value3.metaUrl">@value3.name</a>
+                                                                                                    </li>
+                                                                                                }
+                                                                                            }
+                                                                                        </ul>
+                                                                                    }
+                                                                                }
+
+                                                                            </li>
+                                                                        }
+
+                                                                    }
+
+                                                                </ul>
+                                                            }
+
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown header_mobile">
+                                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">SẢN PHẨM</a>
+
+                                            <ul class="dropdown-menu">
+                                                @if (data != null && data.Any())
+                                                {
+                                                    foreach (var item in data)
+                                                    {
+                                                        <li class="sub-dropdown-hover dropdown_icon_css_item">
+                                                            <a style="font-weight: 700;" href="/danh-sach-san-pham/@item.metaUrl" class="d-flex dropdown-item title_font">
+                                                                <span class="flex-grow-1" style="margin-right: 10px;">@item.name</span>
+                                                                @if (item.menuChildSecondObjs != null && item.menuChildSecondObjs.Any())
+                                                                {
+                                                                    <i style="margin-right: -15px;font-size: 14px!important" class="fas fa-chevron-down"></i>
+                                                                }
+                                                            </a>
+                                                            <ul class="sub-menu">
+                                                                @if (item.menuChildSecondObjs != null && item.menuChildSecondObjs.Any())
+                                                                {
+                                                                    foreach (var value in item.menuChildSecondObjs)
+                                                                    {
+                                                                        @if (value.showUi == 0)
+                                                                        {
+                                                                            @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                            {
+                                                                                foreach (var valueC3 in value.menuChilThirdObjs)
+                                                                                {
+                                                                                    <li class="nav-item dropdown mx-auto">
+
+                                                                                        <a href="/danh-sach-san-pham/@valueC3.metaUrl" style="padding: 0 0 4px;" class="nav-link dropdown-toggle title_font drop_css_lv2 disable_icon_dropdown_css disable_icon_dropdown d-flex align-items-center">
+                                                                                            <span class="flex-grow-1" style="margin-right: 10px;">@valueC3.name</span>
+                                                                                        </a>
+                                                                                    </li>
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <li class="nav-item dropdown mx-auto">
+
+                                                                                <a class="nav-link dropdown-toggle title_font drop_css_lv2 disable_icon_dropdown d-flex align-items-center" data-bs-toggle="dropdown" href="/danh-sach-san-pham/@value.metaUrl">
+                                                                                    <span class="flex-grow-1" style="margin-right: 10px;">@value.name</span>
+                                                                                    @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                                    {
+                                                                                        <i style="font-size: 14px!important" class="fas fa-chevron-down"></i>
+                                                                                    }
+                                                                                </a>
+                                                                                @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                                {
+                                                                                    <ul class="sub-menu">
+                                                                                        @if (value.menuChilThirdObjs != null && value.menuChilThirdObjs.Any())
+                                                                                        {
+                                                                                            foreach (var valueC3 in value.menuChilThirdObjs)
+                                                                                            {
+                                                                                                <li class="nav-item dropdown mx-auto">
+                                                                                                    <a class="dropdown-toggle clamp_title_css title_font" @*data-bs-toggle="dropdown"*@ href="/danh-sach-san-pham/@valueC3.metaUrl">@valueC3.name</a>
+                                                                                                </li>
+                                                                                            }
+                                                                                        }
+                                                                                    </ul>
+                                                                                }
+
+                                                                            </li>
+                                                                        }
+                                                                    }
+
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown header_desktop">
+                                            <a class="nav-link dropdown-toggle header_title" href="/kien-thuc"
+                                            @*data-bs-toggle="dropdown"*@>TRUNG TÂM KIẾN THỨC <i class="fas fa-chevron-down mx-2"></i></a>
+                                            <ul class="dropdown-menu header_item">
+                                                @if (knowledgeCategory != null && knowledgeCategory.Any())
+                                                {
+                                                    foreach (var item in knowledgeCategory)
+                                                    {
+                                                        <li class="sub-dropdown-hover">
+                                                            <a style="padding: 0 0 11px" href="/danh-sach-kien-thuc/@item.metaUrl" class="text-uppercase dropdown-item title_font disable_icon_dropdown d-flex aligns-item-center">
+                                                                <span class="flex-grow-1" style="margin-right: 10px;">@item.name</span>
+                                                                @if (item.childObj != null && item.childObj.Any())
+                                                                {
+                                                                    <i class="fa-solid fa-chevron-right"></i>
+                                                                }
+                                                            </a>
+                                                            @if (item.childObj != null && item.childObj.Any())
+                                                            {
+                                                                <ul class="sub-menu header_item mt-3">
+
+                                                                    @foreach (var value in item.childObj)
+                                                                    {
+                                                                        <li>
+                                                                            <a class="title_font knowledge_clamp_item" href="/danh-sach-kien-thuc/@value.metaUrl">@value.name</a>
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown header_mobile">
+                                            <a class="nav-link dropdown-toggle"
+                                               data-bs-toggle="dropdown">TRUNG TÂM KIẾN THỨC</a>
+                                            <ul class="dropdown-menu">
+                                                @if (knowledgeCategory != null && knowledgeCategory.Any())
+                                                {
+                                                    foreach (var item in knowledgeCategory)
+                                                    {
+                                                        <li class="sub-dropdown-hover dropdown_icon_css_item">
+                                                            <a style="font-size: 16px;font-weight: 700;width: 107%;" href="/danh-sach-kien-thuc/@item.metaUrl" class="dropdown-item">
+                                                                <span class="flex-grow-1" style="margin-right: 10px;">@item.name</span>
+                                                                @if (item.childObj != null && item.childObj.Any())
+                                                                {
+                                                                    <i style="float: right" class="fas fa-chevron-down"></i>
+                                                                }
+                                                            </a>
+                                                            <ul class="sub-menu">
+                                                                @if (item.childObj != null && item.childObj.Any())
+                                                                {
+                                                                    foreach (var value in item.childObj)
+                                                                    {
+                                                                        <li>
+                                                                            <a class="title_font knowledge_clamp_item" href="/danh-sach-kien-thuc/@value.metaUrl">@value.name</a>
+                                                                        </li>
+                                                                    }
+                                                                }
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                }
+
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown new-nav-item header_desktop">
+                                            <a class="nav-link dropdown-toggle header_title" href="/lien-he"
+                                            @*data-bs-toggle="dropdown"*@>HỖ TRỢ KHÁCH HÀNG <i class="fas fa-chevron-down mx-2"></i></a>
+                                            <ul class="dropdown-menu header_item">
+                                                <li>
+                                                    <a class="dropdown-item title_font text-uppercase" href="/lien-he">Liên hệ</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.youtube) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase text_font_header_item" href="https://sittovietnam.vn/" target="_blank">Sitto eShop</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.zalo) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase text_font_header_item" href="@supplierInfo.zalo" target="_blank">Zalo Sitto Việt Nam</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.youtube) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase text_font_header_item" href="@supplierInfo.youtube" target="_blank">Youtube Sitto Việt Nam</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item title_font text-uppercase text_font_header_item" href="https://www.facebook.com/SittoVietNam2005?gidzl=xNUUJOPLYKpgRPn3Ya-CGkfhdqATJuePfp-V59qOWnkYF953caZG7_0zmnx87zKUy3_8HM9P5YGvXbU9Hm" target="_blank">Fanpage Sitto Việt Nam</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.appUrl) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase text_font_header_item" href="https://apps.apple.com/vn/app/n%C3%B4ng-ph%C3%BA/id1287818729?l=vi" target="_blank">Ứng dụng nông phú (App Store)</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.appUrl) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase text_font_header_item" href="https://play.google.com/store/apps/details?id=com.nongphu.app&hl=vi&gl=US" target="_blank">Ứng dụng nông phú (Google Play)</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item dropdown new-nav-item header_mobile">
+                                            <a class="nav-link dropdown-toggle"
+                                               data-bs-toggle="dropdown">HỖ TRỢ KHÁCH HÀNG</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item title_font text-uppercase" href="/lien-he">Liên hệ</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.youtube) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase header_clamp_title_css" href="https://sittovietnam.vn/" target="_blank">Sitto eShop</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.zalo) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase header_clamp_title_css" href="@supplierInfo.zalo" target="_blank">Zalo Sitto Việt Nam</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.youtube) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase header_clamp_title_css" href="@supplierInfo.youtube" target="_blank">Youtube Sitto Việt Nam</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item title_font text-uppercase header_clamp_title_css" href="https://www.facebook.com/SittoVietNam2005?gidzl=xNUUJOPLYKpgRPn3Ya-CGkfhdqATJuePfp-V59qOWnkYF953caZG7_0zmnx87zKUy3_8HM9P5YGvXbU9Hm" target="_blank">Fanpage Sitto Việt Nam</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.appUrl) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase header_clamp_title_css" href="https://apps.apple.com/vn/app/n%C3%B4ng-ph%C3%BA/id1287818729?l=vi" target="_blank">Ứng dụng nông phú (App Store)</a>
+                                                </li>
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.appUrl) ? "display:none;" : "")'>
+                                                    <a class="dropdown-item title_font text-uppercase header_clamp_title_css" href="https://play.google.com/store/apps/details?id=com.nongphu.app&hl=vi&gl=US" target="_blank">Ứng dụng nông phú (Google Play)</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="nav-item dropdown ">
+                                            <a class="nav-link dropdown-toggle nav_link_header" style="font-weight: 500" href="javascript:void(0)"
+                                               data-bs-toggle="dropdown">CÔNG CỤ TIỆN ÍCH</a>
+                                            @if (dataTools != null && dataTools.Any())
+                                            {
+                                                <ul class="dropdown-menu header_item">
+                                                    @if (dataTools != null && dataTools.Any())
+                                                    {
+                                                        foreach (var item in dataTools)
+                                                        {
+                                                            <li>
+                                                                <a class="dropdown-item title_font header_clamp_title_css" target="_blank" href="@item.url">
+                                                                    @item.name
+                                                                </a>
+                                                            </li>
+                                                        }
+                                                    }
+
+                                                </ul>
+                                            }
+
+                                        </li>
+                                    </ul>
+                                    <div class="team-box header_mobile footer_mobile">
+                                        <div class="div_mobile_css_contact">
+                                            <div style="background: #fff !important" class="btn deal-button phone_shop">
+
+                                                <a style="    margin-left: -23px;background: #fff !important" href="mailto: @supplierInfo.email" class="phone_shop">
+                                                    <i data-feather="mail"></i>
+                                                    &nbsp
+                                                    <span class="text-black">@supplierInfo.email</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="div_mobile_css_contact">
+                                            <div style="background: #fff !important" class="btn deal-button phone_shop">
+
+                                                <a style="background: #fff !important" href="tel:@supplierInfo.hotlineNumber" class="phone_shop">
+                                                    <i class="fa-solid fa-phone"></i>
+                                                    <span class="mx-2 text-black">Điện thoại: @supplierInfo.hotlineNumber</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="team-name mt-0">
+                                            <ul class="team-media" style="float: left">
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.faceBook) ? "display:none;" : "")'>
+                                                    <a target="_blank" href="@supplierInfo.faceBook" class="fb-bg">
+                                                        <i class="fa-brands fa-facebook-f"></i>
+                                                    </a>
+                                                </li>
+
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.youtube) ? "display:none;" : "")'>
+                                                    <a target="_blank" href="@supplierInfo.youtube" class="pint-bg">
+                                                        <i class="fab fa-youtube" style="color: #c52020;"></i>
+                                                    </a>
+                                                </li>
+
+
+                                                <li style='@(string.IsNullOrEmpty(supplierInfo.zalo) ? "display:none;" : "")'>
+                                                    <a target="_blank" href="@supplierInfo.zalo" class="insta-bg">
+                                                        <img src="/img_dev/zalo_icon.png" class="w-100 h-100" style="color: blue;" alt="" />
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="div_mobile_css_contact">
+                        <button class="btn deal-button phone_shop" data-bs-toggle="modal" data-bs-target="#deal-box">
+
+                            <a href="tel:@supplierInfo.telephoneNumber" class="phone_shop">
+                                <i data-feather="phone-call"></i>
+                                <span class="mx-2">Liên hệ</span>
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header End -->
+<!-- mobile fix menu start -->
+@*<div class="mobile-menu d-md-none d-block mobile-cart">
+    <ul>
+        <li class="active">
+            <a href="index.html">
+                <i class="iconly-Home icli"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <li class="mobile-category">
+            <a href="javascript:void(0)">
+                <i class="iconly-Category icli js-link"></i>
+                <span>Category</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="search.html" class="search-box">
+                <i class="iconly-Search icli"></i>
+                <span>Search</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="cart.html">
+                <i class="iconly-Bag-2 icli fly-cate"></i>
+                <span>Cart</span>
+            </a>
+        </li>
+    </ul>
+</div>*@
+<!-- mobile fix menu end -->
+
+<div class="modal fade theme-modal exit-modal" id="listen-voice-modal" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body modal1">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg text-center">
+                                <button style="float: right" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="StopSpeech()"><span aria-hidden="true">×</span></button>
+                                <h4 class="w-100 text-center fw-bolder" id="titleSpeech">Nhấn để nói</h4>
+
+                                <div class="container-micro">
+                                    <button class="micro_listening micro_listening-type2" id="btnStartSpeak" onclick="RunSpeech()">
+                                        <div class="micro-pulse-ring"></div>
+                                        <i class="fa fa-microphone" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="mt-3 mb-2 text-center" style="position: relative;">
+                                    <div class="search_modal_mic">
+                                        <span id="contentSpeech" style="word-break:break-word;"></span>
+                                        <button type="button" onclick="SubmitSearchProductForm()" class="btn btn_solid btn-sm btn-xs mx-3" id="btnSearchVoice" title="Tìm kiếm">
+                                            <i class="ti-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none" id="modal_show_search" class="modal_show_search">
+    <a onclick="$('#modal_show_search').fadeOut();" class="close div_close_btn"><i class="fa-solid fa-xmark"></i></a>
+    <div class="nd-header-search nd-searchs modal_content_div">
+        <div class="nd-header-search-form">
+            <input id="input_keyword_product_mobile" type="search" class="search-auto form-control" placeholder="Tìm kiếm sản phẩm muốn tìm ..." maxlength="50" autocomplete="off"
+                   aria-expanded="true" required>
+
+            <button id="btnStartSpeak" class="btn btn-default btn_mic_search_css" onclick="SubmitSearchProductMobile()" type="submit" aria-label="Tìm kiếm">
+                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="">
+                    <path d="M20.7608 19.6062L15.6358 14.4813C16.9097 12.9494 17.6772 10.9823 17.6772 8.83887C17.6772 3.9651 13.7122 0 8.83865 0C3.96499 0 0 3.9651 0 8.83887C0 13.7123 3.96499 17.6771 8.83865 17.6771C10.9819 17.6771 12.9492 16.9097 14.4811 15.6358L19.6062 20.7608C19.7656 20.9203 19.9746 21 20.1835 21C20.3924 21 20.6014 20.9203 20.7609 20.7608C21.0798 20.442 21.0798 19.9251 20.7608 19.6062ZM1.63294 8.83887C1.63294 4.8655 4.86539 1.63294 8.83865 1.63294C12.8118 1.63294 16.0441 4.8655 16.0441 8.83887C16.0441 12.8119 12.8118 16.0441 8.83865 16.0441C4.86539 16.0441 1.63294 12.8119 1.63294 8.83887Z" fill="white"></path>
+                </svg>
+            </button>
+            <a class="btn_mic__css btnShowSpeech" onclick="RunSpeech()">
+                <i data-feather="mic" class="mic_icon_search"></i>
+            </a>
+            <ul class="list-group scroll_css_mobile" id="div_search_mobile">
+            </ul>
+        </div>
+        @*<form action="/tim-kiem" method="get" class="nd-header-search-form" role="search">
+        <input id="input_keyword_product_mobile" type="search" class="search-auto form-control" placeholder="Tìm kiếm sản phẩm muốn tìm ..." maxlength="50" autocomplete="off"
+        aria-expanded="true" required>
+
+        <button id="btnStartSpeak" class="btn btn-default btn_mic_search_css" onclick="SubmitSearchProductMobile()" type="submit" aria-label="Tìm kiếm">
+        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="">
+        <path d="M20.7608 19.6062L15.6358 14.4813C16.9097 12.9494 17.6772 10.9823 17.6772 8.83887C17.6772 3.9651 13.7122 0 8.83865 0C3.96499 0 0 3.9651 0 8.83887C0 13.7123 3.96499 17.6771 8.83865 17.6771C10.9819 17.6771 12.9492 16.9097 14.4811 15.6358L19.6062 20.7608C19.7656 20.9203 19.9746 21 20.1835 21C20.3924 21 20.6014 20.9203 20.7609 20.7608C21.0798 20.442 21.0798 19.9251 20.7608 19.6062ZM1.63294 8.83887C1.63294 4.8655 4.86539 1.63294 8.83865 1.63294C12.8118 1.63294 16.0441 4.8655 16.0441 8.83887C16.0441 12.8119 12.8118 16.0441 8.83865 16.0441C4.86539 16.0441 1.63294 12.8119 1.63294 8.83887Z" fill="white"></path>
+        </svg>
+        </button>
+        <a class="btn_mic__css btnShowSpeech" onclick="RunSpeech()">
+        <i data-feather="mic" class="mic_icon_search"></i>
+        </a>
+        <ul class="list-group scroll_css_mobile" id="div_search_mobile">
+        </ul>
+        </form>*@
+    </div>
+</div>

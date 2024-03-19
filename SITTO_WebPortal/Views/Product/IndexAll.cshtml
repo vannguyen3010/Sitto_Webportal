@@ -1,0 +1,56 @@
+﻿@using SITTO_WebPortal.Lib;
+@{
+    var listCategory = ViewBag.ListCategory as List<M_Category>;
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+}
+@section Scripts{
+    @*<script src="~/controllers/knowledge_all.js" asp-append-version="true"></script>*@
+    <script src="~/controllers/product_all.js" asp-append-version="true"></script>
+}
+@section Styles{
+    <link href="~/css/product.css" rel="stylesheet" asp-append-version="true" />
+}
+
+@*<input type="hidden" id="input_category_all" value="@ViewBag.Category"/>*@
+<input type="hidden" id="input_page" value="@ViewBag.page" />
+<input type="hidden" id="input_record" value="@ViewBag.record" />
+<input type="hidden" id="input_categoryId" value="@ViewBag.CategoryId" /><!-- Breadcrumb Section Start -->
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<!-- Shop Section End -->
+<section class="section-b-space shop-section">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="title title-flex-2">
+                    <ul class="nav nav-tabs scroll_nav_css tab-style-color-2 tab-style-color" id="myTab">
+                        <li class="nav-item">
+                            <button value="@ViewBag.CategoryId" onclick="OnchangeListProdutHotAgricultural(this, event, 11, 1)" class="nav-link btn btn_tab active" data-bs-toggle="tab" data-bs-target="#cooking"
+                                    type="button">
+                                TẤT CẢ
+                            </button>
+                        </li>
+                        @if (listCategory != null && listCategory.Any())
+                        {
+                            foreach (var item in listCategory)
+                            {
+                                <li class="nav-item">
+                                    <button value="@item.id" onclick="OnchangeListProdutHotAgricultural(this, event, @item.categoryId)" class="nav-link btn btn_tab text-uppercase" data-bs-toggle="tab" data-bs-target="#cooking"
+                                            type="button">
+                                        @item.name
+                                    </button>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <div id="div_main_data" class="row g-sm-4 g-3 row-cols-xxl-5 row-cols-xl-5 row-cols-lg-3 row-cols-md-2 row-cols-2 product-list-section">
+                </div>
+
+                <nav class="custome-pagination">
+                    <ul id="ul_main_pagination" class="pagination justify-content-center">
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>

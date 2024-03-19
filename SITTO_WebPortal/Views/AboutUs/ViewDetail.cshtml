@@ -1,0 +1,169 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var data = ViewBag.Data as M_News;
+    var listAboutUs = ViewBag.ListAbout as List<M_News>;
+    var listAboutCat = ViewBag.AboutCategory as List<M_NewCategory>;
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+}
+@section Scripts{
+    @(!string.IsNullOrEmpty(ViewBag.SchemaKnowStar) ? Html.Raw(ViewBag.SchemaKnowStar) : "")
+    <script src="~/controllers/aboutus_detail.js" asp-append-version="true"></script>
+
+}
+@section Styles{
+    <link href="~/css/about.css" rel="stylesheet" asp-append-version="true" />
+}
+
+
+@*<input type="hidden" id="input_news_id" value="@Model.id"/>
+<input type="hidden" id="input_category_id" value="@Model.categoryId" />*@
+<!-- Blog Details Section Start -->
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<section class="blog-section section-b-space">
+    <div class="container-fluid-lg">
+        <div class="row g-sm-4 g-3">
+            <div class="col-xxl-4 col-xl-4 col-lg-5 d-lg-block d-none">
+                <div class="left-sidebar-box">
+
+                    <div class="accordion left-accordion-box" style="margin: unset !important" id="accordionPanelsStayOpenExample">
+
+                        <div class="accordion-item">
+                            <div class="ratio_156 pt-25">
+                                <div class="category-menu p-0">
+                                    <h3>BÀI VIẾT</h3>
+
+                                    <ul class="product-list product-right-sidebar border-0 p-0" id="div_main_data">
+                               
+                                        @*  <li>
+                                        <div class="offer-product">
+                                        <a href="/ve-chung-toi/@item.categoryObj?.metaUrl&/@item.metaUrl" class="offer-image">
+                                        <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)"
+                                        class="img-fluid blur-up lazyload w-100 h-100" alt="@item.title"
+                                        onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                                        </a>
+                                        <div class="offer-detail">
+                                        <div>
+                                        <a href="/ve-chung-toi/@item.categoryObj?.metaUrl&/@item.metaUrl">
+                                        <h6 data-toggle="tooltip" title="@item.title" class="name">@item.title</h6>
+                                        @if (item.publishedAt != null)
+                                        {
+                                        <span>@item.publishedAt?.ToString("dd-MM-yyyy")</span>
+                                        }
+                                        else
+                                        {
+                                        <span>@item.createdAt?.ToString("dd-MM-yyyy")</span>
+                                        }
+                                        </a>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </li>*@
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseThree">
+                                    DANH MỤC
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse collapse show"
+                                 aria-labelledby="panelsStayOpen-headingThree">
+                                <div class="accordion-body pt-0">
+                                    <div class="product-tags-box">
+                                        <ul>
+                                            @if (listAboutCat != null && listAboutCat.Any())
+                                            {
+                                                foreach (var item in listAboutCat)
+                                                {
+                                                    <li>
+                                                        <a href="/ve-chung-toi/@item.metaUrl">@item.name</a>
+                                                    </li>
+                                                }
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xxl-8 col-xl-8 col-lg-7 ratio_50">
+                <div class="blog-detail-image rounded-3 mb-4">
+                    <img src="@(string.IsNullOrEmpty(data?.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : data?.imageObj?.smallUrl)" class="bg-img blur-up lazyload" alt="@data.title">
+                   
+                </div>
+                <div class="blog-image-contain" style="height: 80px;border-bottom: 1px solid #000;">
+                    <ul class="contain-comment-list">
+                        <li>
+                            <h4 class="user-list mt-1" style="color: var(--theme-color)">
+                                @*<i data-feather="calendar"></i>*@
+                                Đăng vào
+                                <span>@data.createdAt?.ToString("dd-MM-yyyy")</span>
+                            </h4>
+                        </li>
+                    </ul>
+                    <h5 class="mt-2">
+                        @data.title
+                    </h5>
+
+                </div>
+                <div class="blog-detail-contain div_detail_wrapper">
+                    @Html.Raw(data.detail)
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Details Section End -->
+
+@if (listAboutUs != null && listAboutUs.Any())
+{
+    <section class="blog-section mb-4">
+        <div class="container-fluid-lg">
+            <div class="title">
+                <h2 class="text-uppercase">Bài viết liên quan</h2>
+                <span class="title-leaf">
+                    <svg class="icon-width">
+                        <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                    </svg>
+                </span>
+            </div>
+
+            <div class="arrow-slider slider_product_relate">
+                @foreach (var item in listAboutUs){
+                    <div>
+                        <div class="product-slider wow fadeInUp about_height_item_">
+                            <a href="/ve-chung-toi/@item.categoryObj?.metaUrl/@item.metaUrl" class="product-slider-image knoewledge__item_css">
+                                <img src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/product.png" : item.imageObj?.smallUrl)" class="w-100 h-100 blur-up lazyload rounded-3"
+                                     onerror="this.onerror=null;this.src='/img_dev/error/product.png';" alt="item.title">
+                            </a>
+
+                            <div class="product-slider-detail">
+                                <div>
+                                    <div class="blog-label">
+                                        <span class="time" style="margin-top: unset !important"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span>@item.publishedAt?.ToString("dd-MM-yyyy")</span></span>
+
+                                    </div>
+                                    <a href="/ve-chung-toi/@item.categoryObj?.metaUrl/@item.metaUrl" data-bs-toggle="tooltip" data-bs-placement="right" title="item.title" class="d-block">
+                                        <span class="mt-3 text-title name_clamp knowledge_detail_titile_item font_item_modifeil">@item.title</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+            </div>
+        </div>
+    </section>
+}

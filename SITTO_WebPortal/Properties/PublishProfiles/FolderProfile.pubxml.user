@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>F:\Publish Area\demo.sittovietnam.vn</_PublishTargetUrl>
+    <History>True|2023-11-06T12:50:28.1811323Z;True|2023-11-06T09:43:09.6654660+07:00;True|2023-11-04T09:08:43.3808830+07:00;True|2023-11-04T02:00:44.0958909+07:00;True|2023-11-03T01:25:17.0026032+07:00;True|2023-11-03T01:04:59.5149853+07:00;True|2023-11-02T09:59:37.7770835+07:00;True|2023-11-02T09:38:05.4949849+07:00;True|2023-11-01T22:30:51.8678998+07:00;True|2023-11-01T22:00:47.1144135+07:00;True|2023-11-01T21:54:52.3430711+07:00;True|2023-11-01T21:12:36.3843381+07:00;True|2023-11-01T20:55:20.4790228+07:00;True|2023-11-01T20:37:36.7196895+07:00;True|2023-11-01T15:12:10.1451074+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,152 @@
+﻿@using SITTO_WebPortal.Lib;
+@model M_News
+
+@{
+    Layout = "~/Views/Shared/_LayoutMaster.cshtml";
+    var data = ViewBag.ListNewsRelates as List<M_News>;
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+}
+@section Scripts{
+    <script src="~/controllers/knowledge_detail.js" asp-append-version="true"></script>
+    @(!string.IsNullOrEmpty(ViewBag.SchemaKnowStar) ? Html.Raw(ViewBag.SchemaKnowStar) : "")
+}
+@section Styles{
+    <link href="~/css/knowledge.css" rel="stylesheet" asp-append-version="true"/>
+}
+
+<input type="hidden" id="input_news_id" value="@Model.id" />
+<input type="hidden" id="input_category_id" value="@Model.categoryId" />
+<!-- Blog Details Section Start -->
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<section class="blog-section section-b-space">
+    <div class="container-fluid-lg">
+        <div class="row g-sm-4 g-3">
+            <div class="col-xxl-9 col-xl-8 col-lg-7 ratio_50">
+                <div class="blog-detail-image rounded-3 mb-4 mx-auto knoew_detail_image" @*style="height: 600px"*@>
+                    <img src="@(string.IsNullOrEmpty(Model.imageObj?.relativeUrl) ? "/img_dev/error/avatar.png" : Model.imageObj?.relativeUrl)"
+                         class="bg-img blur-up lazyload w-100 h-100" alt="@Model.title"
+                         onerror="this.onerror=null;this.src='/img_dev/error/product.png';">
+                </div>
+                <div class="blog-image-contain" style="height: 80px;border-bottom: 1px solid #000;">
+                    <ul class="contain-comment-list">
+                        <li>
+                            <h4 class="user-list mt-1" style="color: var(--theme-color)">
+                                @*<i data-feather="calendar"></i>*@
+                                Đăng vào
+                                <span>@Model.createdAt</span>
+                            </h4>
+                        </li>
+                    </ul>
+                    <h5 class="mt-2">
+                        @Model.title
+                    </h5>
+                  
+                </div>
+                <div class="blog-detail-contain div_detail_wrapper ">
+                    <p>
+                        @Html.Raw(Model.detail)
+                    </p>
+                  
+                </div>
+                <div class="knowledge_share_item">
+                    <span class="tititle_name">Chia Sẻ Kiến Thức Này: </span>
+                    <a class="badge text-white" href="#" style="background: var(--theme-color);font-size: 15px;height: 26px;display: flow-root;" data-bs-toggle="tooltip" data-bs-placement="top" title="Chia sẻ Facebook" id="facebook_share">
+                        <img class="" style="height: 20px;margin-top: -3px" src="~/img_dev/facebook.png" alt="" />
+                        @*<img class="w-100 h-100" src="~/img_dev/icon_facebook.png" alt="@Model.name" />*@
+                        <span>Chia sẻ</span>
+                    </a>
+                    <a class="badge text-white" style="background: var(--theme-color);font-size: 15px;height: 26px;display: flow-root;" data-bs-toggle="tooltip" data-bs-placement="top" title="Chia sẻ Zalo" id="zalo_share" href="">
+                        <img class="h-100" src="~/img_dev/zalo_icon.png" />
+                        <span>Chia sẻ</span>
+                    </a>
+                    <a class="title_font" style="color: #000;font-weight: 600" href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="top" title="Sao chép đường dẫn" id="btn_copy_link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+
+                    </a>
+                </div>
+
+            </div>
+            <div class="col-xxl-3 col-xl-4 col-lg-5 d-lg-block d-none">
+                <div class="left-sidebar-box">
+
+                    <div class="accordion left-accordion-box" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                <button class="accordion-button text-uppercase" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                    Bài viết nổi bật
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                 aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body pt-0">
+                                    <div class="recent-post-box slide_div_isHot_data" id="div_isHot_data">
+                                    </div>
+                                    @* <button class="next-prow-detail ring_ring"> <i class="fas fa-chevron-right"></i></button>*@
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Details Section End -->
+<!-- Product Section Start -->
+<section class="py-3">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-12">
+                <div class="title">
+                    <h2 style="text-transform: uppercase">Bài viết liên quan</h2>
+                    <span class="title-leaf">
+                        <svg class="icon-width">
+                            <use xlink:href="/assets/svg/leaf.svg#leaf"></use>
+                        </svg>
+                    </span>
+                </div>
+                <div class="slide_related_product ratio_65 no-arrow product-wrapper">
+                    @if (data != null && data.Any())
+                    {
+                        @foreach (var item in data)
+                        {
+                            <div>
+                                <div class="product-box-4 product-slider wow fadeInUp knowledge_image">
+                                    <a href="/kien-thuc/@item.categoryObj?.metaUrl/@item.metaUrl" class="product-slider-image knowledge_new_modifile knoewledge__item_css">
+                                        <img data-src="@(string.IsNullOrEmpty(item.imageObj?.smallUrl) ? "/img_dev/error/avatar.png" : item.imageObj?.smallUrl)" class="w-100 blur-up custom_image lazyload rounded-3"
+                                             onerror="this.onerror=null;this.src='/img_dev/error/product.png';" alt="@item.title">
+                                    </a>
+                                    <div class="product-detail div_css_item_name">
+                                        <div class="blog-label">
+                                            @if (item.publishedAt != null)
+                                            {
+                                                <span class="time"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span>@item.publishedAt?.ToString("dd-MM-yyyy")</span></span>
+                                            }
+                                            else
+                                            {
+                                                <span class="time"><i style="color: var(--theme-color)" class="far fa-calendar"></i> <span>@item.createdAt?.ToString("dd-MM-yyyy")</span></span>
+                                            }
+
+                                        </div>
+                                        <span data-toggle="tooltip" data-placement="top" title="${value.categoryObj?.name}" class="knowledge_category_item category_clamp_title text-uppercase">@item.categoryObj?.name</span>
+                                        <a href="/kien-thuc/@item.categoryObj?.metaUrl/@item.metaUrl" data-toggle="tooltip" data-placement="top" title="@item.title">
+                                            <h1 class="name_clamp knowledge_title_item_custom mt-2 font_item_modifeil">@item.title</h1>
+                                        </a>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        }
+                    }
+                   
+
+                </div>
+            </div>
+        </div>
+        @*<div class="row text-center p-3 mt-2"><a href="/danh-sach-kien-thuc?c=@Model.categoryObj?.parentObj?.id">Xem thêm</a></div>*@
+    </div>
+</section> 
+<!-- Product Section End -->

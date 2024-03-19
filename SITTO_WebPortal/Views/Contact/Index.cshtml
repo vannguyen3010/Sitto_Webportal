@@ -1,0 +1,354 @@
+﻿@model EM_Contact
+@using SITTO_WebPortal.Lib;
+@{
+    var breadCrumb = ViewBag.BreadCrumb as VM_BreadCrumb;
+    var supplierInfo = ViewBag.SupplierInfo as M_Supplier;
+}
+@section Styles {
+    <link href="~/assets/lib/ladda/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="~/css/home.css" rel="stylesheet" asp-append-version="true"/>
+}
+@section Scripts{
+    <script src="~/assets/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/assets/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/assets/lib/ladda/spin.min.js"></script>
+    <script src="~/assets/lib/ladda/ladda.min.js"></script>
+    <script src="~/assets/lib/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=@ViewData["KeyGoogleMap"]&callback=InitMap" defer></script>
+    <script src="~/js/gmaps.min.js"></script>
+   
+    <script>
+        const LATITUDE = @supplierInfo.addressObj?.latitude;
+        const LONGITUDE = @supplierInfo.addressObj?.longitude;
+    </script>
+    <script src="~/controllers/contact.js" asp-append-version="true"></script>
+}
+<partial name="_P_Breadcrumb" model="breadCrumb" />
+<!-- Contact Box Section Start -->
+<section class="contact-box-section">
+    <div class="container-fluid-lg">
+        <div class="row g-lg-5 g-3">
+            <div class="col-lg-6">
+                <div class="left-sidebar-box">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="contact-image">
+                                <img src="../assets/images/inner-page/contact-us.png"
+                                     class="img-fluid blur-up lazyloaded" alt="">
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="contact-title">
+                                <h3>
+                                    Thông tin liên hệ
+                                </h3>
+                            </div>
+
+                            <div class="contact-detail">
+                                <div class="row g-4">
+                                    @if (!string.IsNullOrEmpty(supplierInfo.telephoneNumber))
+                                    {
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-mobile"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4>Số điện thoại</h4>
+                                                </div>
+
+                                                <a href="tel:@supplierInfo.telephoneNumber" class="contact-detail-contain">
+                                                    <p>@supplierInfo.telephoneNumber</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+                                    @if (!string.IsNullOrEmpty(supplierInfo.hotlineNumber))
+                                    {
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-phone"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4>Hotline</h4>
+                                                </div>
+
+                                                <a href="tel:@supplierInfo.hotlineNumber" class="contact-detail-contain">
+                                                    <p>@supplierInfo.hotlineNumber</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(supplierInfo.email))
+                                    {
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-envelope"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4 class="notranslate">Email</h4>
+                                                </div>
+
+                                                <a href="mailto:@supplierInfo.email" class="contact-detail-contain">
+                                                    <p style="word-break: break-word;">@supplierInfo.email</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(supplierInfo.fax))
+                                    {
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-fax"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4>Fax</h4>
+                                                </div>
+
+                                                <div class="contact-detail-contain">
+                                                    <p>@supplierInfo.fax</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+
+                                    <div class="col-xxl-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="contact-detail-box">
+                                            <div class="contact-icon">
+                                                <i class="fa-solid fa-location-dot"></i>
+                                            </div>
+                                            <div class="contact-detail-title">
+                                                <h4>Địa chỉ</h4>
+                                            </div>
+
+                                            <div class="contact-detail-contain">
+                                                @*<p>@supplierInfo.addressObj?.addressText, @supplierInfo.addressObj?.wardObj?.name, @supplierInfo.addressObj?.districtObj?.name, @supplierInfo.addressObj?.provinceObj?.name</p>*@
+                                                <p>@supplierInfo.addressObj?.addressText</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="title d-xxl-none d-block">
+                    <h2>Liên hệ chúng tôi</h2>
+                </div>
+                <form id="form_data" asp-antiforgery="true" class="right-sidebar-box needs-validation" method="post">
+                    <div class="row">
+                        <div class="col-xxl-12 col-lg-12 col-sm-6">
+                            <div class="mb-md-4 mb-3 custom-form">
+                                <label asp-for="title" class="form-label">Tiêu đề <span class="text-danger">*</span></label>
+                                <input type="text" asp-for="title" class="form-control" maxlength="100" placeholder="Nhập tiêu đề" required>
+                                <span asp-validation-for="title" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                            <div class="mb-md-4 mb-3 custom-form">
+                                <label asp-for="name" class="form-label">Họ và Tên<span class="text-danger">*</span></label>
+                                <input type="text" asp-for="name" class="form-control" maxlength="50"
+                                       placeholder="Nhập họ và tên của bạn" required>
+                                <span asp-validation-for="name" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                            <div class="mb-md-4 mb-3 custom-form">
+                                <label asp-for="phoneNumber" class="form-label">Số điện thoại<span class="text-danger">*</span></label>
+                                <input type="text" asp-for="phoneNumber" class="form-control" maxlength="11" onkeypress="return IsNumberKey(event)" pattern="^[0-9]{1,20}$" placeholder="Nhập số điện thoại" required>
+                                <span asp-validation-for="phoneNumber" class="invalid-feedback"></span>
+
+                            </div>
+                        </div>
+                        <div class="col-xxl-12 col-lg-12 col-sm-6">
+                            <div class="mb-md-4 mb-3 custom-form">
+                                <label asp-for="email" class="form-label notranslate">Email</label>
+                                <input type="email" asp-for="email" class="form-control" maxlength="100" 
+                                       placeholder="Nhập địa chỉ Email">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="mb-md-4 mb-3 custom-form">
+                                <label asp-for="detail" class="form-label">Nội dung</label>
+                                <textarea asp-for="detail" class="form-control" maxlength="150" placeholder="Nhập nội dung" rows="6"></textarea>
+                                <span asp-validation-for="detail" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-animation btn-md fw-bold ms-auto" data-style="expand-right" id="btn_submit_form" type="submit">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Gửi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Box Section End -->
+<!-- Map Section Start -->
+@*<section class="map-section">
+    <div class="container-fluid p-0">
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d2994.3803116994895!2d55.29773782339708!3d25.222534631321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x3e5f43496ad9c645%3A0xbde66e5084295162!2sDubai%20-%20United%20Arab%20Emirates!3m2!1d25.2048493!2d55.2707828!4m0!5e1!3m2!1sen!2sin!4v1652217109535!5m2!1sen!2sin"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>*@
+<section class="map-section">
+    <div class="container-fluid p-0">
+        <div class="map-box map">
+            <div id="map" style="height:450px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- modal send success start-->
+<div class="modal fade bd-example-modal-lg theme-modal exit-modal" id="modal_send_success" tabindex="-1" role="dialog"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content modal_div_css">
+            <div class="modal-body modal1" style="border: 14px solid #4e7b15;">
+                <div class="container-fluid p-0">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="modal-bg">
+
+                                <div class="media d-flex align-items-center">
+
+                                    <div class="media-body text-start align-self-center mx-auto">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                        </button>
+                                        <div class="text-center">
+                                            <h2>Gửi thành công!</h2>
+                                            <h4>
+                                                Cảm ơn bạn đã gửi phản hồi đến chúng tôi.
+                                            </h4>
+                                            <div>
+                                                <a href="javascript:void(0)" data-bs-dismiss="modal" class="btn w-25 mx-auto btn-danger bg_color">Đóng</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="team-section section-lg-space">
+    <div class="container-fluid-lg">
+        <div class="about-us-title text-center">
+            <h2 class="center">HỖ TRỢ KHÁCH HÀNG</h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="div_slide_support product-wrapper">
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="@supplierInfo.zalo">
+                                    <img src="/img_dev/logoZalo.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #0d6efd" class="text-white">ZALO</h3>
+                                <a target="_blank" href="@supplierInfo.zalo" class="font_name">
+                                    SITTO VIỆT NAM
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="@supplierInfo.youtube">
+                                    <img src="/img_dev/logoYTB.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 class="text-white bg-danger">YOUTUBE</h3>
+                                <a target="_blank" href="@supplierInfo.youtube" class="font_name">
+                                    SITTO VIỆT NAM - BẠN CỦA NHÀ NÔNG
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="https://www.facebook.com/SittoVietNam2005">
+                                    <img src="/img_dev/facebook.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #1261d4" class="text-white">FACEBOOK</h3>
+                                <a target="_blank" href="https://www.facebook.com/SittoVietNam2005" class="font_name">
+                                    SITTO VIỆT NAM
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="@supplierInfo.appUrl">
+                                    <img src="/img_dev/logoNP.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #70c91c" class="text-white notranslate">GOOGLE PLAY</h3>
+                                <a target="_blank" href="@supplierInfo.appUrl" class="font_name">
+                                    ỨNG DỤNG NÔNG PHÚ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="team-box">
+                            <div class="team_image_css box_shadow_img">
+                                <a target="_blank" href="https://apps.apple.com/vn/app/n%C3%B4ng-ph%C3%BA/id1287818729?l">
+                                    <img src="/img_dev/logoNP.png" class="img-fluid blur-up lazyload support_img_css w-100 h-100"
+                                         alt="">
+                                </a>
+                            </div>
+
+                            <div class="team-name">
+                                <h3 style="background-color: #70c91c" class="text-white notranslate">APP STORE</h3>
+                                <a target="_blank" href="https://apps.apple.com/vn/app/n%C3%B4ng-ph%C3%BA/id1287818729?l" class="font_name">
+                                    ỨNG DỤNG NÔNG PHÚ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

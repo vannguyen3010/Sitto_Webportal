@@ -1,0 +1,397 @@
+﻿
+/*BannerTop start*/
+.prev-btn {
+    border-top-right-radius: 13px;
+    border: none;
+    border-bottom-right-radius: 13px;
+    opacity: 0.4;
+    height: 100px;
+    width: 38px;
+    position: relative;
+    top: -50%;
+}
+.prev-btn:hover{
+    opacity: 0.9;
+}
+
+.next-btn {
+    border-top-left-radius: 13px;
+    border: none;
+    border-bottom-left-radius: 13px;
+    position: relative;
+    top: -50%;
+    opacity: 0.4;
+    height: 100px;
+    width: 38px;
+}
+.next-btn:hover{
+    opacity: 0.9;
+}
+.div_btn_slide {
+    justify-content: space-between;
+    position: relative;
+    top: -50%;
+    display: flex;
+}
+/*BannerTop end*/
+/*list new product start*/
+.div_btn_slide_new {
+    justify-content: space-between;
+    position: relative;
+    bottom: 70%;
+    display: flex;
+}
+.prev-btn_new_right {
+    border: none;
+    opacity: 0.7;
+    height: 65px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.prev-btn_new_right:hover{
+    opacity: 0.9;
+}
+.next-btn_new_right {
+    border: none;
+    opacity: 0.7;
+    height: 65px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+.next-btn_new_right:hover{
+    opacity: 0.9;
+}
+/*new product end*/
+/*Sldie product*/
+.prev-btn_agriculture {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.prev-btn_agriculture:hover{
+    opacity: 0.9;
+}
+.next-btn_agriculture {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+.next-btn_agriculture:hover{
+    opacity: 0.9;
+}
+.prev-btn_agriculture_know {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.prev-btn_agriculture_know:hover{
+    opacity: 0.9;
+}
+.next-btn_agriculture_know {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+.next-btn_agriculture_know:hover{
+    opacity: 0.9;
+}
+.prev_btn_seafood {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.prev_btn_seafood:hover{
+    opacity: 0.9;
+}
+.next_btn_seafood {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+.next_btn_seafood:hover{
+    opacity: 0.9;
+}
+/*Sldie product end*/
+/*Sldie Knowled*/
+.prev-btn_knowledge {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.prev-btn_knowledge:hover{
+    opacity: 0.9;
+}
+.next-btn_knowledge {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+.next-btn_knowledge:hover{
+    opacity: 0.9;
+}
+.prev-btn_about {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.prev-btn_about:hover{
+    opacity: 0.9;
+}
+.next-btn_about {
+    border: none;
+    opacity: 0.7;
+    height: 55px;
+    width: 33px;
+    position: relative;
+    top: -50%;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+}
+.next-btn_about:hover{
+    opacity: 0.9;
+}
+/*Sldie Knowled end*/
+/*News list start*/
+.clamp_title_css {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+
+
+/*News list end*/
+
+/*Slide Product Start*/
+.div_btn_slide_about {
+    justify-content: space-between;
+    position: relative;
+    top: -52%;
+    display: flex;
+    height: 55px;
+}
+.div_btn_slide_product {
+    justify-content: space-between;
+    position: relative;
+    top: -52%;
+    display: flex;
+    height: 55px;
+}
+.div_btn_slide_knowledt {
+    justify-content: space-between;
+    position: relative;
+    top: -52%;
+    display: flex;
+    height: 55px;
+}
+.arrow-slider .slick-prev {
+    z-index: 1;
+    background: #0e947a;
+    position: absolute !important;
+    left: -6px !important;
+    top: 50% !important;
+}
+
+.arrow-slider .slick-next {
+    background: #0e947a;
+    position: absolute !important;
+   /* right: -44px !important;*/
+    top: 50% !important;
+}
+.div_product_item{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+.div_img_product_item {
+    flex-shrink:0;
+}
+
+.div_detail_product_item {
+    line-height: 2em;
+    /*height: 100px;*/
+    height: 87px;
+    margin-top: unset !important;
+}
+.name_product_item{
+    height: 35px;
+}
+.clamp_name_clamp {
+    font-size: 18px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.name_clamp {
+    line-height: normal;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+/*Slide Product end*/
+/*Slide Support start*/
+.about-us-title h2::before {
+    background: unset;
+}
+/*Slide Support end*/
+
+/*Slide Support start*/
+
+.team_name_css {
+    text-align: center;
+    margin-top: 20px;
+}
+.team_name_css h3{
+    font-size: calc(18px + (20 - 18) * ((100vw - 320px) / (1920 - 320)));
+    letter-spacing: 0.7px;
+    font-weight: 700;
+}
+.team_image_css {
+    cursor: pointer;
+    height: 110px;
+    width: 110px;
+    border-radius: 100%;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.img_div_object{
+    object-fit: contain;
+    cursor: pointer;
+}
+.team_image {
+    height: 130px !important;
+}
+.support_img_css {
+    -webkit-filter: unset !important;
+    object-fit: contain;
+}
+.box_shadow_img {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.font_name{
+    font-size: 16px;
+}
+
+.font_name_home {
+    font-size: 14px;
+    font-weight: 500;
+}
+/*Slide Support end*/
+.slider_popular_top_right .slick-track, .slider_popular_top_right .slick-slide {
+    width: 100% !important;
+}
+.product_category_item {
+    line-height: 16px;
+    height: 20px;
+    background: var(--theme-color);
+    color: #fff;
+    font-size: 11px;
+    padding: 3px;
+    border-radius: 4px;
+}
+.div_detail_knowledge_item {
+    line-height: 2.2em;
+    height: 110px;
+    margin-top: unset !important;
+}
+.title_font_item {
+    font-weight: 500;
+}
+
+product_news_element_modifiel {
+    object-fit: cover;
+}
+/*.div_mobile_res_banner_header img{
+    display: unset !important;
+    object-fit: contain;
+}*/
+.div_slide_support .slick-prev{
+    display: none !important;
+}
+.div_slide_support .slick-next {
+    display: none !important;
+}
+
+
+
+
+
+
+
+.item_new_respon{
+    width: 450px;
+}
+.div_list_news_product{
+    border-radius: 13px;
+}
+
+.slider_popup .slick-prev {
+    display: none !important;
+}
+
+.slider_popup .slick-next {
+    display: none !important;
+}
